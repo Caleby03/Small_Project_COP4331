@@ -1,1 +1,53 @@
-empty
+# Name for your workflow, which will appear in the GitHub Actions tab
+name: Deploy LAMP App to AWS Lightsail
+
+# -----------------
+#      TRIGGER
+# -----------------
+# This workflow runs automatically on any 'push' to the 'main' branch.
+on:
+  push:
+    branches:
+      - main  # IMPORTANT: Change this to 'master' if that is your primary branch.
+
+# -----------------
+#       JOBS
+# -----------------
+# A workflow is made of one or more jobs.
+jobs:
+  deploy:
+    # The name of the job (can be anything).
+    name: Deploy to Lightsail
+    
+    # The virtual machine environment the job will run on.
+    runs-on: ubuntu-latest
+
+    # -----------------
+    #      STEPS
+    # -----------------
+    # A job is made of a sequence of steps.
+    steps:
+      - name: SSH into server and deploy
+        # Uses a popular community-built action for SSH commands.
+        uses: appleboy/ssh-action@master
+        
+        # Provides the inputs required by the SSH action.
+        with:
+          # These values are securely pulled from your GitHub Repository Secrets.
+          host: ${{ secrets.LIGHTSAIL_IP }}
+          username: ${{ secrets.LIGHTSAIL_USER }}
+          key: ${{ secrets.PEM_KEY }}
+          
+          # This is the sequence of commands that will be executed on your server.
+          # The '|' allows for a multi-line script.
+          script: |
+            #!/bin/bash
+            cd /home/bitnami/Small_Project_COP4331
+            git pull origin main
+            # Uncomment the following line if you use Composer
+            # composer install --no-dev --optimize-autoloader
+            sudo /opt/bitnami/ctlscript.sh restart apache
+            echo "Deployment finished!"
+
+
+
