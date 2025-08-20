@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="./css/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="login-container">
+            <div id="login-background-container">
+                <form id="loginForm">
+                    <div class="email-container">
+                        <label for="email">Email</label>
+                        <div id="input-container">
+                            <img src="./images/loginEmail.png" alt="#">
+                            <input type="email" id="email" name="email" placeholder="Type your email" required>
+                        </div>
+                    </div>
+
+                    <div class="password-container">
+                        <label for="password">Password</label>
+                        <div id="input-container">
+                            <img src="./images/passwordLock.png" alt="#">
+                            <input type="password" id="password" name="password" placeholder="Type your password" required>
+                        </div>
+
+                    </div>
+                    <div class="submit-login-container">
+                        <button type="submit">Login</button>
+                    </div>
+                    <div class="submit-register-container">
+                        <button type="submit">Sign up</button> <!--Ugly register button-->
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="./js/login.js"></script>
+    </body>
+</html>

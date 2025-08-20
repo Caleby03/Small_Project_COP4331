@@ -1,0 +1,83 @@
+/*all temp colors can change whatever*/
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #3a3a3a;
+}
+
+
+#login-container{
+    height: 100svh;
+    width: 100svw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginForm{
+    height: 500px;
+    width: 400px;
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+#loginForm div{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+#loginForm input{
+    border: none;
+    padding: 10px;
+    border-bottom: 1px solid black;
+    padding-left: 40px;
+}
+
+#loginForm button{
+    padding: 10px;
+    width: 100%;
+    border-radius: 20px;
+    background: linear-gradient(to right, teal, aquamarine, white);
+    border: none;
+    cursor: pointer;
+}
+
+#loginForm div + div{
+    margin-top: 2vw;
+}
+
+#input-container{
+    position: relative;
+    display: flex;
+}
+
+#input-container img{
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2em;
+    height: 1em;
+    object-fit: contain;
+}
+
+
+@media (max-width: 600px){
+    #loginForm{
+        width: 60svw;
+        height: 75svh;
+    }
+    #loginForm div{
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+    }
+
+}
