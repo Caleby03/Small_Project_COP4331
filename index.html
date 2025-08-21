@@ -2,15 +2,24 @@
 <html>
     <head>
         <title>Contact Manager</title>
-        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="./css/style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div class="container">
-            <div class="nav-bar">
-
-            </div>
+        <div class="nav-bar-container">
+            <nav class="nav-bar" id="nav-bar">
+                <ul class="nav-top">
+                    <h2>Team 28</h2>
+                    <li><a class="nav-bar-link" href="./index.html">Home</a></li>
+                    <li><a class="nav-bar-link" href="./add-contact.html">Add Contact</a></li>
+                    <li><a class="nav-bar-link" href="./view-contact.html">View Contact</a></li>
+                </ul>
+                <ul class="nav-bottom">
+                    <li><a id="login-logout-btn" href="./login.html">Login</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger" id="hamburger">&#9776;</div>
         </div>
-        <script src="./app.js"></script>
+        <script src="./js/app.js"></script>
     </body>
 </html>

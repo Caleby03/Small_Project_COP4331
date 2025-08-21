@@ -6,6 +6,9 @@ body{
     background-color: #3a3a3a;
 }
 
+/*
+login.html
+*/
 
 #login-container{
     height: 100svh;
@@ -16,6 +19,7 @@ body{
 }
 
 #loginForm{
+    position: relative;
     height: 500px;
     width: 400px;
     display: flex;
@@ -40,14 +44,30 @@ body{
     padding-left: 40px;
 }
 
+#register-btn{
+    position: absolute;
+    bottom: 10px;
+    width: 100px;
+    left: 50%;
+    transform: translate(-50%);
+    background: linear-gradient(to right, teal, aquamarine, white);
+}
+
+
+#login-btn{
+    width: 100%;
+    background: linear-gradient(to right, teal, aquamarine, white);
+}
+
 #loginForm button{
     padding: 10px;
-    width: 100%;
     border-radius: 20px;
     background: linear-gradient(to right, teal, aquamarine, white);
     border: none;
     cursor: pointer;
 }
+
+
 
 #loginForm div + div{
     margin-top: 2vw;
@@ -68,8 +88,66 @@ body{
     object-fit: contain;
 }
 
+#error-text{
+    color:red;
+    font-size: smaller;
+    padding-bottom: 10px;
+}
 
-@media (max-width: 600px){
+/*
+index.html
+*/
+
+.nav-bar-container{
+    background-color: rgb(115, 115, 115);
+    width: 30svw;
+    height: 100svh;
+    box-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
+
+#nav-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100svh;
+    color: aquamarine;
+}
+
+#nav-bar a{
+    text-decoration: none;
+    color:aquamarine;
+}
+
+#nav-bar li:hover{
+    background-color: #3a3a3a;
+}
+
+#nav-bar li{
+    border-radius: 6px;
+    padding: 10px;
+    text-decoration: none;
+    list-style: none;
+    margin-bottom: 10px;
+    width: 70%;
+    transition: background-color 0.3s ease;
+}
+#nav-bar h2{
+    text-decoration: underline;
+}
+
+
+.hamburger{
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+@media (max-width: 700px){
+    /*
+    login.html
+    */
+
     #loginForm{
         width: 60svw;
         height: 75svh;
@@ -78,6 +156,42 @@ body{
         display: flex;
         flex-direction: column;
         width: 200px;
+    }
+
+    /*
+    index.html
+    */
+    .nav-bar-container{
+        box-shadow: none;
+        background-color: transparent;
+    }
+
+    #nav-bar{
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100svw;
+        height: 100svh;
+        background-color: #3a3a3a;
+    }
+
+    #nav-bar li{
+        padding: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    #nav-bar li + li{
+        margin-top: 20px;
+    }
+
+    .hamburger{
+        display: block;
+    }
+
+    #nav-bar.show{
+        display: flex;
     }
 
 }

@@ -7,32 +7,31 @@
     </head>
     <body>
         <div id="login-container">
-            <div id="login-background-container">
-                <form id="loginForm">
-                    <div class="email-container">
-                        <label for="email">Email</label>
-                        <div id="input-container">
-                            <img src="./images/loginEmail.png" alt="#">
-                            <input type="email" id="email" name="email" placeholder="Type your email" required>
-                        </div>
+            <form id="loginForm">
+                <span id="error-text"></span>
+                <div class="email-container">
+                    <label for="email">Email</label>
+                    <div id="input-container">
+                        <img src="./images/loginEmail.png" alt="#">
+                        <input type="email" id="email" name="email" placeholder="Type your email" required>
+                    </div>
+                </div>
+
+                <div class="password-container">
+                    <label for="password">Password</label>
+                    <div id="input-container">
+                        <img src="./images/passwordLock.png" alt="#">
+                        <input type="password" id="password" name="password" placeholder="Type your password" required>
                     </div>
 
-                    <div class="password-container">
-                        <label for="password">Password</label>
-                        <div id="input-container">
-                            <img src="./images/passwordLock.png" alt="#">
-                            <input type="password" id="password" name="password" placeholder="Type your password" required>
-                        </div>
-
-                    </div>
-                    <div class="submit-login-container">
-                        <button type="submit">Login</button>
-                    </div>
-                    <div class="submit-register-container">
-                        <button type="submit">Sign up</button> <!--Ugly register button-->
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="submit-login-container">
+                    <button type="submit" id="login-btn">Login</button>
+                </div>
+                <div class="submit-register-container">
+                    <button type="submit" id="register-btn">Sign up</button> <!--Ugly register button-->
+                </div>
+            </form>
         </div>
         <script src="./js/login.js"></script>
     </body>
