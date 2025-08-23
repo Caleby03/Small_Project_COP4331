@@ -1,83 +1,194 @@
-/*all temp colors can change whatever*/
-
-body{
-    padding: 0;
-    margin: 0;
-    background-color: #3a3a3a;
+/* ==============================
+   THEME VARIABLES
+============================== */
+:root {
+  --bg: #000;
+  --bg-img: url('../images/spaceBackground.svg');
+  --glass: rgba(0,0,0,0.65);
+  --ink: #fff;
+  --accent: #dd6ff9;
+  --accent-2: #261438;
+  --ring: #dd6ff9;
+  --gap: .5rem;
+  --header-h: 56px;
 }
 
+/* ==============================
+   BASE
+============================== */
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg) var(--bg-img) center center / cover no-repeat fixed;
 
-#login-container{
-    height: 100svh;
-    width: 100svw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--ink);
 }
 
-#loginForm{
-    height: 500px;
-    width: 400px;
-    display: flex;
-    background-color: white;
-    border-radius: 10px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+main {
+  padding-top: calc(var(--header-h) + 0.5rem);
 }
 
-
-#loginForm div{
-    display: flex;
-    flex-direction: column;
-    width: 300px;
+/* ==============================
+   LOGIN CONTAINER
+============================== */
+#login-container {
+  background: var(--glass);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+  width: 320px;
 }
 
-#loginForm input{
-    border: none;
-    padding: 10px;
-    border-bottom: 1px solid black;
-    padding-left: 40px;
+#login-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
 }
 
-#loginForm button{
-    padding: 10px;
-    width: 100%;
-    border-radius: 20px;
-    background: linear-gradient(to right, teal, aquamarine, white);
-    border: none;
-    cursor: pointer;
+/* ==============================
+   INPUT GROUPS
+============================== */
+.input-group {
+  display: flex;
+  align-items: center;
+  background: rgba(89, 54, 94, 0.1);
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.2rem;
 }
 
-#loginForm div + div{
-    margin-top: 2vw;
+.input-group img {
+  width: 28px;
+  height: 23px;
+  margin-right: 0.6rem;
+  filter: brightness(0) saturate(100%) invert(18%) sepia(14%)
+          saturate(3551%) hue-rotate(246deg) brightness(93%) contrast(92%);
 }
 
-#input-container{
-    position: relative;
-    display: flex;
+.input-group input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  font-size: 1rem;
+  outline: none;
+  font-family: inherit; 
 }
 
-#input-container img{
-    position: absolute;
-    left: 0px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 2em;
-    height: 1em;
-    object-fit: contain;
+.input-group input::placeholder {
+  color: #e4d0ea;
+  opacity: .8;
 }
 
+/* ==============================
+   BUTTONS
+============================== */
+.btn {
+  display: inline-block;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;        
+  margin-top: 0.6rem;
+  background: var(--accent-2);
+  border: none;
+  border-radius: 0.6rem;       
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.06s ease-in-out;
+  font-family: 'Bangers', cursive, sans-serif;
+}
 
-@media (max-width: 600px){
-    #loginForm{
-        width: 60svw;
-        height: 75svh;
-    }
-    #loginForm div{
-        display: flex;
-        flex-direction: column;
-        width: 200px;
-    }
+.btn:hover { background: var(--accent); }
+.btn:active { transform: translateY(1px); }
 
+.btn--full { width: 100%; }
+
+.app-header .btn {
+  margin-top: 0;  
+}
+
+.btn--contact {
+  margin-top: 0;                
+  border-radius: 0.6rem;       
+  
+}
+
+/* ==============================
+   TITLES
+============================== */
+.page-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  font-family: 'Bangers', cursive, sans-serif;
+
+  background: linear-gradient(90deg, #7941b0, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ==============================
+   ERROR TEXT
+============================== */
+.error-text {
+  min-height: 1.2rem;
+  margin: 0.25rem 0 0.5rem;
+  color: #ff9bbd;
+  letter-spacing: 0.5px;
+  font-size: 0.95rem;
+}
+
+/* ==============================
+   HEADER & NAV (UNIFIED LOOK)
+============================== */
+.app-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  gap: var(--gap);
+  align-items: center;
+  padding: .6rem 1rem;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(6px);
+  height: var(--header-h);
+}
+
+.nav-bar-link {
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-bar-link:hover { text-decoration: underline; }
+
+#nav-bar {
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: rgba(0,0,0,0.85);
+  position: absolute;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  z-index: 999;
+}
+#nav-bar.show { display: flex; }
+
+/* ==============================
+   ACCESSIBILITY
+============================== */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
 }
