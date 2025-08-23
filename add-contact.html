@@ -1,0 +1,82 @@
+<!-- add-contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Contact Manager — Add Contact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div id="login-container">
+    <!-- main header -->
+    <h1 class="page-title">CREATE NEW CONTACT</h1>
+
+    <form id="AddContactForm" autocomplete="on">
+      <!-- First Name -->
+      <div class="firstName-container">
+        <label for="firstName">First Name</label>
+        <div class="input-group">
+          <img class="input-icon input-icon--rocket" src="./images/rocket.png" alt="" aria-hidden="true">
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            placeholder="Enter contact's first name"
+            required
+          />
+        </div>
+      </div>
+
+      <!-- Last Name -->
+      <div class="lastName-container">
+        <label for="lastName">Last Name</label>
+        <div class="input-group">
+          <img class="input-icon" src="./images/rocket.png" alt="" aria-hidden="true">
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            placeholder="Enter contact's last name"
+            required
+          />
+        </div>
+      </div>
+
+      <!-- Phone Number -->
+      <div class="phoneNumber-container">
+        <label for="phoneNumber">Phone Number</label>
+        <div class="input-group">
+          <img class="input-icon" src="./images/rocket.png" alt="" aria-hidden="true">
+          <input
+            type="tel"
+            id="phoneNumber"
+            name="phoneNumber"
+            placeholder="Enter contact's phone #"
+            inputmode="tel"
+            pattern="^\d{3}-\d{3}-\d{4}$"
+            maxlength="12"
+            required
+          />
+        </div>
+        <small class="help-text">Format: 123-456-7890</small>
+      </div>
+
+      <!-- error message slot for add-contact.js -->
+      <p id="error-text" class="error-text" role="alert" aria-live="polite"></p>
+
+      <!-- actions -->
+      <div class="submit-login-container">
+        <button id="add-contact-btn" type="submit" class="btn btn--full">Add to Contacts</button>
+      </div>
+      <div class="submit-register-container">
+        <a id="cancel-btn" href="index.html" class="btn btn--full">Cancel</a>
+      </div>
+    </form>
+  </div>
+
+  <script src="./js/add-contact.js"></script>
+</body>
+</html>

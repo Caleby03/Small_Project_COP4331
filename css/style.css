@@ -150,7 +150,7 @@ main {
 }
 
 /* ==============================
-   HEADER & NAV (UNIFIED LOOK)
+   HEADER & NAV 
 ============================== */
 .app-header {
   position: fixed;
@@ -191,4 +191,31 @@ main {
 :focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
+}
+
+/* ==============================
+   ROCKET ICON
+============================== */
+
+.input-icon {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.input-group input {
+  flex: 1 1 auto;
+}
+
+.input-group > img.input-icon {
+  width: 56px;
+  height: 46px;
+  flex: 0 0 56px;   
+  display: block;  
+  max-width: none; 
 }
