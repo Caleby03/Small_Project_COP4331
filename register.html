@@ -1,0 +1,49 @@
+<!-- This is the register page for new users. -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Contact Manager — Register</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div id="login-container">
+    <h1 class="page-title">Account Creation</h1>
+
+    <form id="registerForm">
+      <div class="email-container">
+        <label for="email">Email</label>
+        <div class="input-group">
+          <img src="./images/loginEmail.png" alt="Email icon">
+          <input type="email" id="email" name="email" placeholder="Type your email" required>
+        </div>
+      </div>
+
+      <div class="password-container">
+        <label for="password">Password</label>
+          <div class="input-group">
+            <img src="./images/passwordLock.png" alt="Password lock icon">
+            <input type="password" id="password" name="password" placeholder="Type your password" required>
+          </div>
+      </div>
+
+
+      <!-- Create Account / Back to Login buttons-->
+      <div class="submit-register-container">
+        <button type="submit" class="btn btn--full">Create Account</button>
+      </div>
+      <div class="submit-login-container">
+        <a href="login.html" class="btn btn--full">Back to Login</a>
+      </div>
+
+    </form>
+  </div>
+
+  <script src="./js/register.js"></script>
+</body>
+</html>
