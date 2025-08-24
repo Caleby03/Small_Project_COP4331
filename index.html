@@ -1,0 +1,48 @@
+<!--
+  Index page (home) with navigation for contact functions.
+  This page is displayed after successful login.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Contact Manager — Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <!-- header / nav -->
+  <header class="app-header">
+    <div>
+      <button id="hamburger"
+              type="button"
+              class="btn btn--contact"
+              aria-label="Toggle navigation"
+              aria-controls="nav-bar"
+              aria-expanded="false">
+        Contact functions
+      </button>
+
+      <nav id="nav-bar" class="nav" aria-label="Primary">
+        <a href="./add-contact.html" class="nav-bar-link">Add contact</a>
+        <a href="./view-contact.html" class="nav-bar-link">View contact(s)</a>
+      </nav>
+
+      <button id="login-logout-btn" class="btn" type="button">Login</button>
+    </div>
+
+
+    <span id="team-number">28</span> <!--Gotta represent our team :P-->
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">Welcome to Contact Manager</h1>
+    <p>lets add something cool here :D</p>
+  </main>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
