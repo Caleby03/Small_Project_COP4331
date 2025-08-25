@@ -11,22 +11,14 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        
-      - name: Upload site files to server
+
+      - name: Upload repo to server (to /home/bitnami/deploy)
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.LIGHTSAIL_IP }}
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.PEM_KEY }}
-          source: |
-            index.html
-            add-contact.html
-            login.html
-            register.html
-            view-contact.html
-            css/**
-            js/**
-            images/**
+          source: "./**"
           target: /home/bitnami/deploy
           overwrite: true
 
@@ -38,11 +30,19 @@ jobs:
           key: ${{ secrets.PEM_KEY }}
           script: |
             set -e
+            # clean web root
             sudo rm -rf /opt/bitnami/apache/htdocs/*
-            sudo mkdir -p /opt/bitnami/apache/htdocs
-            sudo mv /home/bitnami/deploy/* /opt/bitnami/apache/htdocs/
+
+            # copy only site assets from uploaded repo dir
+            cd /home/bitnami/deploy
+            sudo cp -r index.html add-contact.html login.html register.html view-contact.html css js images /opt/bitnami/apache/htdocs/
+
+            # fix ownership/permissions
             sudo chown -R bitnami:daemon /opt/bitnami/apache/htdocs
             sudo find /opt/bitnami/apache/htdocs -type d -exec chmod 755 {} \;
             sudo find /opt/bitnami/apache/htdocs -type f -exec chmod 644 {} \;
+
+            # restart apache
             sudo /opt/bitnami/ctlscript.sh restart apache
+
             echo "Deployment finished!"
