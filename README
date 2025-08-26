@@ -1,1 +1,17 @@
-empty
+# MySQL Login
+User: Root
+Password: password
+
+To log in use this command
+```bash
+mysql -u root -p
+```
+You should see this output
+```bash
+Enter password: #Enter Above Password
+```
+
+This tells you you've made it into mysql as root successfully
+```bash
+mysql>
+```
