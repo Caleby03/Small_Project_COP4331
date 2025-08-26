@@ -21,7 +21,6 @@ jobs:
           source: "./**"
           target: /home/bitnami/deploy
           overwrite: true
-          exclude: ".git/**"
 
       - name: Move into Apache htdocs + set perms + restart
         uses: appleboy/ssh-action@v1
