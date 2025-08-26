@@ -19,9 +19,9 @@ jobs:
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.PEM_KEY }}
           source: |
-          "./**"        
-          "!.git/**"
-          "!**/.git/**"
+            "./**"        
+            "!.git/**"
+            "!**/.git/**"
           target: /home/bitnami/deploy
           overwrite: true
 
