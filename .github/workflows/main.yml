@@ -15,6 +15,7 @@ jobs:
       - name: Upload repo to server (to /home/bitnami/deploy)
         uses: appleboy/scp-action@v0.1.7
         with:
+          debug: true
           host: ${{ secrets.LIGHTSAIL_IP }}
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.PEM_KEY }}
