@@ -19,7 +19,9 @@ jobs:
           host: ${{ secrets.LIGHTSAIL_IP }}
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.PEM_KEY }}
-          source: "./**"        
+          source: |
+              "./**"
+              "!.git/**"        
           target: /home/bitnami/deploy
           overwrite: true
 
