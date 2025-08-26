@@ -20,8 +20,8 @@ jobs:
           key: ${{ secrets.PEM_KEY }}
           source: |
             "./**"        
-            "!.git/**"
-            "!**/.git/**"
+            "!.git/objects/**"
+            "!**/.git/objects/**"
           target: /home/bitnami/deploy
           overwrite: true
 
