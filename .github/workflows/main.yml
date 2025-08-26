@@ -18,10 +18,7 @@ jobs:
           host: ${{ secrets.LIGHTSAIL_IP }}
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.PEM_KEY }}
-          source: |
-            "./**"        
-            "!.git/objects/**"
-            "!**/.git/objects/**"
+          source: "./**"        
           target: /home/bitnami/deploy
           overwrite: true
 
