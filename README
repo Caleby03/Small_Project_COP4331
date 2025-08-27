@@ -1,5 +1,28 @@
-mySQL: 
-  password
-  database: COP4331
-  tables: One table in COP4331 named 'Contacts' with First Name, Last Name, Email, Phone Number, Date Recorded and Primary Key 
-  user is 'UnNamed' identied by 'Small'
+# Small Project README
+## General Project Info
+* Domain: http://cop4331smallprojectteam28.xyz 
+* Static IP: 44.216.9.85
+* Hosting Platform: AWS Light Sail
+* MySQL Version: 8.0.43 Linux x86_64
+* Apache Version: 2.4.63
+
+## Front-end
+
+## API
+
+## Apache Important Info
+
+## Database
+### mySQL: 
+* User: root
+* Pass: password
+* Database: COP4331
+* Tables: Two tables in COP4331 
+    1. 'Contacts' with First Name, Last Name, Email, Phone Number, Date Recorded and Primary Key 
+        user is 'UnNamed' identied by 'Small'
+    2. 'Users' with FirstName, LastName, Login, Password, and Primary Key is auto_inc ID
+
+Login Command
+```bash
+mysql -u root -p
+```
