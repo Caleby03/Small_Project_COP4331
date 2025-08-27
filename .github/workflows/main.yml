@@ -20,15 +20,7 @@ jobs:
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.PEM_KEY }}
           # no longer pulling all files from github, only the ones that serve website
-          source: |
-            index.html
-            add-contact.html
-            login.html
-            register.html
-            view-contact.html
-            css/**
-            js/**
-            images/**
+          source: "index.html, add-contact.html, login.html, register.html, view-contact.html, css/**, js/**, images/**"
           target: /home/bitnami/deploy
           overwrite: true
 
