@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.PEM_KEY }}
           # no longer pulling all files from github, only the ones that serve website
-          source: "index.html, add-contact.html, login.html, register.html, view-contact.html, css/**, js/**, images/**"
+          source: "index.html,add-contact.html,login.html,register.html,view-contact.html,css/**,js/**,images/**"
           target: /home/bitnami/deploy
           overwrite: true
 
@@ -37,6 +37,9 @@ jobs:
 
             # ensures rsync is available
             command -v rsync >/dev/null || (sudo apt-get update -y && sudo apt-get install -y rsync)
+
+            # clean up unwanted files from upload directory
+            sudo rm -rf "$UPLOAD"/.git* "$UPLOAD"/README* "$UPLOAD"/*.md
 
             # sync site files with webroot (this cleans out old files we arent using anymore)
             sudo rsync -av --delete "$UPLOAD"/ "$DOCROOT"/
