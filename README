@@ -1,1 +1,5 @@
-empty
+mySQL: 
+  password
+  database: COP4331
+  tables: One table in COP4331 named 'Contacts' with First Name, Last Name, Email, Phone Number, Date Recorded and Primary Key 
+  user is 'UnNamed' identied by 'Small'
