@@ -8,22 +8,31 @@ jobs:
   deploy:
     name: Deploy to Lightsail
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Upload repo to server (to /home/bitnami/deploy)
+      - name: Upload site files to server (staging at /home/bitnami/deploy)
         uses: appleboy/scp-action@v0.1.7
         with:
-          debug: true
           host: ${{ secrets.LIGHTSAIL_IP }}
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.PEM_KEY }}
-          source: "./**"      
+          # no longer pulling all files from github, only the ones that serve website
+          source: |
+            index.html
+            add-contact.html
+            login.html
+            register.html
+            view-contact.html
+            css/**
+            js/**
+            images/**
           target: /home/bitnami/deploy
           overwrite: true
 
-      - name: Move into Apache htdocs + set perms + restart
+      - name: Sync to Apache htdocs + restart
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.LIGHTSAIL_IP }}
@@ -31,19 +40,21 @@ jobs:
           key: ${{ secrets.PEM_KEY }}
           script: |
             set -e
-            # clean web root
-            sudo rm -rf /opt/bitnami/apache/htdocs/*
+            DOCROOT="/opt/bitnami/apache/htdocs"
+            UPLOAD="/home/bitnami/deploy"
 
-            # copy only site assets from uploaded repo dir
-            cd /home/bitnami/deploy
-            sudo cp -r index.html add-contact.html login.html register.html view-contact.html css js images /opt/bitnami/apache/htdocs/
+            # ensures rsync is available
+            command -v rsync >/dev/null || (sudo apt-get update -y && sudo apt-get install -y rsync)
 
-            # fix ownership/permissions
-            sudo chown -R bitnami:daemon /opt/bitnami/apache/htdocs
-            sudo find /opt/bitnami/apache/htdocs -type d -exec chmod 755 {} \;
-            sudo find /opt/bitnami/apache/htdocs -type f -exec chmod 644 {} \;
+            # sync site files with webroot (this cleans out old files we arent using anymore)
+            sudo rsync -av --delete "$UPLOAD"/ "$DOCROOT"/
 
-            # restart apache
+            # perms
+            sudo chown -R bitnami:daemon "$DOCROOT"
+            sudo find "$DOCROOT" -type d -exec chmod 755 {} \;
+            sudo find "$DOCROOT" -type f -exec chmod 644 {} \;
+
+            # restart apache 
+            test -f "$DOCROOT/index.html" || { echo "index.html missing"; exit 1; }
             sudo /opt/bitnami/ctlscript.sh restart apache
-
             echo "Deployment finished!"
