@@ -14,8 +14,8 @@
 	}
 	else
 	{
-        $stmt = $conn->prepare("SELECT ID,FirstName,LastName FROM Users WHERE FirstName=? AND LastName =?");
-		$stmt->bind_param("ss", $inData["firstName"], $inData["lastName"]);
+        $stmt = $conn->prepare("SELECT ID,FirstName,LastName FROM Users WHERE Login=?");
+		$stmt->bind_param("s", $inData["login"]);
 		$stmt->execute();
 		$result = $stmt->get_result();
 
