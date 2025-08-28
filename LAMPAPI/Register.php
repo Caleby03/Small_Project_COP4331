@@ -28,14 +28,7 @@
 			$stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Login, Password) VALUES(?, ?, ?, ?)");
 		    $stmt->bind_param("ssss", $inData["firstName"], $inData["lastName"], $inData["login"], $inData["password"]);
 		    $result = $stmt->execute();
-            if( $result > 0 )
-            {
-                returnSuccess("True");
-            }
-            else
-            {
-                returnSuccess("False");
-            }
+            returnWithError("");
 		}
 		
 
@@ -65,11 +58,5 @@
 		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":"' . $error . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-
-    function returnSuccess($success)
-    {
-        $retValue = '{"userAdded":"' .$success. '","error":""}';
-        sendResultInfoAsJson( $retValue );
-    }
 	
 ?>
