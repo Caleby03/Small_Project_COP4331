@@ -27,8 +27,7 @@
 		{
 			$stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Login, Password) VALUES(?, ?, ?, ?)");
 		    $stmt->bind_param("ssss", $inData["firstName"], $inData["lastName"], $inData["login"], $inData["password"]);
-		    $stmt->execute();
-		    $result = $stmt->affected_rows();
+		    $result = $stmt->execute();
             returnSuccess($result);
             if( $row = $result->fetch_assoc()  )
             {
