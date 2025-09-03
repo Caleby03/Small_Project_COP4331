@@ -219,3 +219,104 @@ main {
   display: block;  
   max-width: none; 
 }
+
+.muted { opacity:.8; }
+
+/* ==============================
+   Contacts display
+============================== */
+.contacts-container { display:grid; gap:.8rem; }
+.contact {
+  display:flex; gap:1rem;
+  padding:.8rem; border-radius:.8rem;
+  background:rgba(0,0,0,.5);
+  align-items:flex-start;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+.contact-initials {
+  width:48px; height:48px; border-radius:50%;
+  display:grid; place-items:center;
+  background:rgba(255,255,255,.1);
+  margin:0; font-weight:700; letter-spacing:.5px;
+}
+.contact-group p { margin:.1rem 0; }
+.contact-actions { display:flex; gap:.5rem; margin-top:.5rem; }
+
+.btn--danger {
+  background:#b30021;
+  color:#fff !important;
+  border:none;
+}
+.btn--danger:hover { filter:brightness(1.1); }
+#show-all-btn:hover,
+#show-all-btn:focus {
+  filter: brightness(1.1);
+}
+/* ==============================
+   View contacts page
+============================== */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+#contact-search {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 0.8rem;
+  border: 4px solid rgba(173, 87, 199, 0.7) !important; /* debug !important to override other styles */
+  margin: 0.5rem 0 0.5rem;
+}
+
+.show-all-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0 0 1rem;
+}
+
+#empty-state {
+  margin-top: 1rem;
+  opacity: 0.8;
+}
+
+/* ==============================
+   Modal (aka popups)
+============================== */
+.modal[hidden] {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.8rem;
+  padding: 1rem 1rem 0.9rem;
+  max-width: 420px;
+  width: 92%;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
+
+.modal-title {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
