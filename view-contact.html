@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Contact Manager — View Contacts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <!-- header / nav -->
+  <header class="app-header">
+    <div>
+      <button id="hamburger"
+              type="button"
+              class="btn btn--contact">
+        Contact functions
+      </button>
+
+      <nav id="nav-bar" class="nav" aria-label="Primary">
+        <a href="./add-contact.html" class="nav-bar-link">Add a New Contact</a>
+        <a href="./index.html" class="nav-bar-link">Return to Home</a>
+      </nav>
+
+      <button id="login-logout-btn" class="btn" type="button">Login</button>
+    </div>
+
+  </header>
+
+  <main class="container">
+    <!-- Search -->
+    <h1 class="page-title">search for your contacts!</h1>
+    <input
+      id="contact-search"
+      class="input"
+      type="search"
+      placeholder="Search Contact's by name"
+    />
+
+    <div class="show-all-wrapper">
+      <button id="show-all-btn" class="btn" type="button">
+        Show all contacts
+      </button>
+    </div>
+
+    <!-- Results -->
+    <section>
+      <div id="results" class="contacts-container" role="list"></div>
+      <p id="empty-state" class="muted">Nothing to display yet...</p>
+    </section>
+  </main>
+
+  <!-- Delete confirm popup -->
+  <div id="confirm-modal" class="modal" role="dialog" hidden>
+    <div class="modal-content">
+      <h3 id="confirm-title" class="modal-title">ARE YOU SURE?</h3>
+      <p id="confirm-text">You are about to DELETE this contact. This action CANNOT be undone!</p>
+      <div class="modal-actions">
+        <button id="confirm-cancel" class="btn" type="button">Cancel</button>
+        <button id="confirm-delete" class="btn btn--danger" type="button">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/app.js"></script>
+  <script src="./js/view-contact.js" defer></script>
+</body>
+</html>
