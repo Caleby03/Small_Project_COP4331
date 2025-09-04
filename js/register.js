@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         errorTxt.innerHTML = "Login Already Exists!";
                         return;
                     }
+                    errorTxt.innerHTML = "Account Created!";
                     window.location.href = "./login.html";
                 }
             };
