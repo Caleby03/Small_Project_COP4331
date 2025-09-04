@@ -17,13 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(emailInput.value, passwordInput.value);
         let payload = {login: emailInput.value, password: passwordInput.value};
         let jsonPayload = JSON.stringify(payload);
+        console.log(jsonPayload);
 
         let xhr = new XMLHttpRequest();
         xhr.open("POST", urlbase + '/Login.' + extension, true);
         xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
         
         try{    
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function() 
+            {
                 if(this.readyState === 4 && this.status === 200) {
                     let jsonObject = JSON.parse(xhr.responseText);
                     console.log(jsonObject);
