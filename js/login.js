@@ -15,7 +15,25 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault(); // stop default form submission
         if(handleError()) return;
         console.log(emailInput.value, passwordInput.value);
+        let payload = {login: emailInput.value, password: passwordInput.value};
+        let jsonPayload = JSON.stringify(payload);
 
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", urlbase + '/Login.' + extension, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        
+        try{    
+            xhr.onreadystatechange = function() {
+                if(this.readyState === 4 && this.status === 200) {
+                    let jsonObject = JSON.parse(xhr.responseText);
+                    console.log(jsonObject);
+                }
+            };
+            xhr.send(jsonPayload);
+        }
+        catch(err){
+            handleIncorrectUser();
+        }
         sessionStorage.setItem("loggedIn", "true");
         window.location.href = "./index.html";
     }
@@ -45,5 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //get username and password from database next and check if exists
         return false;
+    }
+
+    function handleIncorrectUser(){
+        errorTxt.innerHTML = "Incorrect email or password";
     }
 });
