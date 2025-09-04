@@ -1,5 +1,6 @@
 // pasted this from Khalil's branch on featire/navbar
-
+const urlbase = "http://cop4331smallprojectteam28.xyz/LAMPAPI";
+const extension = "php";
 document.addEventListener('DOMContentLoaded', () => {
     const loginBtn = document.getElementById("login-btn");
     const registerBtn = document.getElementById("register-btn");
