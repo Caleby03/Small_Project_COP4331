@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         return;
                     }
                     errorTxt.innerHTML = "Account Created!";
-                    window.location.href = "./login.html";
                 }
             };
             xhr.send(jsonPayload);
