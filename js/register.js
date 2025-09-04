@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleError(){
-        const firstNameVal = firstNameInput.value.trim();
-        const lastNameVal = lastNameInput.value.trim();
+        const firstNameVal = firstNameInput //.value.trim();
+        const lastNameVal = lastNameInput //.value.trim();
         const emailVal = emailInput.value.trim();
         const passVal = passwordInput.value.trim();
 
