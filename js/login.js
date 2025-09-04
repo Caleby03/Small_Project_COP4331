@@ -14,10 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleLogin(e){
         e.preventDefault(); // stop default form submission
         if(handleError()) return;
-        console.log(emailInput.value, passwordInput.value);
+
         let payload = {login: emailInput.value, password: passwordInput.value};
         let jsonPayload = JSON.stringify(payload);
-        console.log(jsonPayload);
 
         let xhr = new XMLHttpRequest();
         xhr.open("POST", urlbase + '/Login.' + extension, true);
@@ -29,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(this.readyState == 4 && this.status == 200) 
                 {
                     let jsonObject = JSON.parse(xhr.responseText);
-                    console.log(jsonObject);
                     if(jsonObject.id < 1)
                     {
                         errorTxt.innerHTML = "Invalid login credentials";
