@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     userId = jsonObject.id;
                     sessionStorage.setItem("loggedIn", "true");
-                    window.location.href = "color.html";
+                    window.location.href = "./index.html";
                 }
             };
             xhr.send(jsonPayload);
