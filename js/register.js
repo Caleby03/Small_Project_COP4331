@@ -14,7 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault(); // stop default form submission
         if(handleError()) return;
 
-        let payload = {firstName: firstNameInput.value, lastName: lastNameInput.value,login: emailInput.value, password: passwordInput.value};
+        let payload = {firstName: firstNameInput//.value
+        , lastName: lastNameInput//.value
+        ,login: emailInput.value, password: passwordInput.value};
         let jsonPayload = JSON.stringify(payload);
 
         let xhr = new XMLHttpRequest();
