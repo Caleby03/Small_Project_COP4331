@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         return;
                     }
                     userId = jsonObject.id;
+                    sessionStorage.setItem("userId", userId);
                     sessionStorage.setItem("loggedIn", "true");
                     window.location.href = "./index.html";
                 }
