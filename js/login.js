@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             xhr.send(jsonPayload);
         }
         catch(err){
-            handleIncorrectUser();
+            errorTxt.innerHTML = err.message;
         }
         sessionStorage.setItem("loggedIn", "true");
         window.location.href = "./index.html";
@@ -65,9 +65,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //get username and password from database next and check if exists
         return false;
-    }
-
-    function handleIncorrectUser(){
-        errorTxt.innerHTML = "Incorrect email or password";
     }
 });
