@@ -1,10 +1,7 @@
 const urlbase = "http://cop4331smallprojectteam28.xyz/LAMPAPI";
 const extension = "php";
 
-if(sessionStorage.getItem("registered") === "true"){
-    errorTxt.innerHTML = "Account Created! Please Login.";
-    sessionStorage.removeItem("registered");
-}
+
 document.addEventListener('DOMContentLoaded', () => {
     const createActBtn = document.getElementById("create-account-btn");
     const firstNameInput = "Caleb"//document.getElementById("first-name") ;
@@ -14,6 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const errorTxt = document.getElementById("error-text");
 
     createActBtn.addEventListener('click', handleRegister);
+
+    if(sessionStorage.getItem("registered") === "true"){
+        errorTxt.innerHTML = "Account Created! Please Login.";
+        sessionStorage.removeItem("registered");
+    }
 
     function handleRegister(e){
         e.preventDefault(); // stop default form submission
