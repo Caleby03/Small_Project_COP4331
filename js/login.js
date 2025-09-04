@@ -30,6 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     let jsonObject = JSON.parse(xhr.responseText);
                     console.log(jsonObject);
+                    
+                    sessionStorage.setItem("loggedIn", "true");
+                    window.location.href = "color.html";
                 }
             };
             xhr.send(jsonPayload);
@@ -37,8 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         catch(err){
             errorTxt.innerHTML = err.message;
         }
-        sessionStorage.setItem("loggedIn", "true");
-        window.location.href = "./index.html";
     }
 
     function handleRegister(){
