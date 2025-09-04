@@ -1,5 +1,10 @@
 const urlbase = "http://cop4331smallprojectteam28.xyz/LAMPAPI";
 const extension = "php";
+
+if(sessionStorage.getItem("registered") === "true"){
+    errorTxt.innerHTML = "Account Created! Please Login.";
+    sessionStorage.removeItem("registered");
+}
 document.addEventListener('DOMContentLoaded', () => {
     const createActBtn = document.getElementById("create-account-btn");
     const firstNameInput = "Caleb"//document.getElementById("first-name") ;
@@ -34,7 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         errorTxt.innerHTML = "Login Already Exists!";
                         return;
                     }
-                    errorTxt.innerHTML = "Account Created!";
+                    sessionStorage.setItem("registered", "true");
+                    window.location.href = "./register.html";
                 }
             };
             xhr.send(jsonPayload);
