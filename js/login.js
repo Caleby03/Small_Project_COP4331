@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleLogin(e){
         e.preventDefault(); // stop default form submission
         if(handleError()) return;
+        console.log(emailInput.value, passwordInput.value);
 
         sessionStorage.setItem("loggedIn", "true");
         window.location.href = "./index.html";
