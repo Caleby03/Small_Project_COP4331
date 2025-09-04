@@ -30,7 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     let jsonObject = JSON.parse(xhr.responseText);
                     console.log(jsonObject);
-                    
+                    if(jsonObject.id < 1)
+                    {
+                        errorTxt.innerHTML = "Invalid login credentials";
+                        return;
+                    }
+                    userId = jsonObject.id;
                     sessionStorage.setItem("loggedIn", "true");
                     window.location.href = "color.html";
                 }
