@@ -115,10 +115,10 @@
       }
 
       let payload = {
-            firstName: newContact.firstName.value,
-            lastName: newContact.lastName.value,
-            email: newContact.email.value,
-            phone: newContact.phone.value,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phone: phone,
             userId: userId
       };
 
