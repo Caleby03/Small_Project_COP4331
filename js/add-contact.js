@@ -1,5 +1,8 @@
 // js for add-contact page
 (function () {
+  const urlbase = "http://cop4331smallprojectteam28.xyz/LAMPAPI";
+  const extension = "php";
+
   const form = document.getElementById("AddContactForm");
   const firstEl = document.getElementById("firstName");
   const lastEl  = document.getElementById("lastName");
@@ -104,6 +107,42 @@
       saveContacts(contacts);
       form.reset();
       showSuccess("Added to contacts!");
+      let payload = {
+            firstName: newContact.firstName.value,
+            lastName: newContact.lastName.value,
+            email: newContact.email.value,
+            phone: newContact.phone.value,
+            userId: sessionStorage.getItem("userId")
+      };
+
+      // Send contact to Add-Contact API
+      let jsonPayload = JSON.stringify(payload);
+
+      console.log(jsonPayload);
+
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", urlbase + '/AddContact.' + extension, true);
+      xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+      
+      try
+      {    
+        xhr.onreadystatechange = function() 
+        {
+          if(this.readyState == 4 && this.status == 200) 
+          {
+            let jsonObject = JSON.parse(xhr.responseText);
+            if(jsonObject.error != "")
+            {
+              showError(jsonObject.error);
+              return;
+            }
+          }
+          };
+          xhr.send(jsonPayload);
+      }
+      catch(err){
+        errorTxt.innerHTML = err.message;
+      }
       setTimeout(() => {
         window.location.href = "index.html";
       }, 800);
