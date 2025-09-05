@@ -11,7 +11,7 @@
   --ring: #dd6ff9;
   --gap: .5rem;
   --header-h: 56px;
-  --header-offset: 2rem; /* extra space below header (tweak this) */
+  --header-offset: 2rem; 
 }
 
 /* ==============================
@@ -31,6 +31,17 @@ body.login-page {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+body.add-contact-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+body.add-contact-page #login-container {
+  margin-top: calc(var(--header-h, 56px) + 1.5rem);
 }
 
 main {
@@ -152,6 +163,14 @@ main {
   min-height: 1.2rem;
   margin: 0.25rem 0 0.5rem;
   color: #ff9bbd;
+  letter-spacing: 0.5px;
+  font-size: 0.95rem;
+}
+
+.success-text {
+  min-height: 1.2rem;
+  margin: 0.25rem 0 0.5rem;
+  color: #8ef7a5; 
   letter-spacing: 0.5px;
   font-size: 0.95rem;
 }
@@ -359,6 +378,38 @@ main.container {
   gap: 0.5rem;
   justify-content: flex-end;
   margin-top: 1rem;
+}
+
+/* ==============================
+   Add Contact page 
+============================== */
+body.add-contact-page #login-container {
+  width: 300px;
+}
+body.add-contact-page .page-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+body.add-contact-page .input-group {
+  padding: 0.3rem 0.5rem;
+}
+body.add-contact-page .input-group input {
+  font-size: 0.95rem;
+}
+body.add-contact-page .input-icon,
+body.add-contact-page .input-group > img.input-icon {
+  width: 40px;
+  height: 34px;
+  flex: 0 0 40px;
+}
+body.add-contact-page .btn {
+  font-size: 1rem;
+  padding: 0.45rem 0.9rem;
+}
+body.add-contact-page .help-text,
+body.add-contact-page small.help-text {
+  font-size: 0.8rem;
+  opacity: 0.9;
 }
 
 
