@@ -17,9 +17,6 @@
 		if($userId <= 0) {
 			returnWithError("Invalid user ID");
 		}
-		if($userId == ""){
-			$userId = ""
-		}
 		$stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Email, PhoneNumber, UserId) VALUES(?,?,?,?,?)");
 		$stmt->bind_param("sssss", $firstName, $lastName, $email, $phone, $userId);
 		$stmt->execute();
