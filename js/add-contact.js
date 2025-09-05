@@ -107,12 +107,19 @@
       saveContacts(contacts);
       form.reset();
       showSuccess("Added to contacts!");
+      
+      userId = sessionStorage.getItem("userId");
+      if (!userId){
+        showError("Not Signed in. Please Sign-in to add contacts.");
+        return;
+      }
+
       let payload = {
             firstName: newContact.firstName.value,
             lastName: newContact.lastName.value,
             email: newContact.email.value,
             phone: newContact.phone.value,
-            userId: sessionStorage.getItem("userId")
+            userId: userId
       };
 
       // Send contact to Add-Contact API
