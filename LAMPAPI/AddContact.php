@@ -14,15 +14,19 @@
 	} 
 	else
 	{
-		if($userId <= 0) {
-			returnWithError("Invalid user ID");
+		if($userId > 0) {
+			$stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Email, PhoneNumber, UserId) VALUES(?,?,?,?,?)");
+			$stmt->bind_param("sssss", $firstName, $lastName, $email, $phone, $userId);
+			$stmt->execute();
+			$stmt->close();
+			$conn->close();
+			returnWithError("");
 		}
-		$stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Email, PhoneNumber, UserId) VALUES(?,?,?,?,?)");
-		$stmt->bind_param("sssss", $firstName, $lastName, $email, $phone, $userId);
-		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
+		else
+		{
+			returnWithError("User ID is required.");
+		}
+		
 	}
 
 	function getRequestInfo()
