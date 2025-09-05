@@ -1,4 +1,4 @@
-// pasted this from Khalil's branch on featire/navbar
+// pasted this from Khalil's branch on feature/navbar
 const urlbase = "http://cop4331smallprojectteam28.xyz/LAMPAPI";
 const extension = "php";
 document.addEventListener('DOMContentLoaded', () => {
@@ -7,6 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailInput = document.getElementById("email");
     const passwordInput = document.getElementById("password");
     const errorTxt = document.getElementById("error-text");
+
+    // added this section to show account created message
+    if (sessionStorage.getItem('registered') === 'true') {
+        errorTxt.textContent = 'Account created! Please login.';
+        errorTxt.style.color = '#8ef7a5'; 
+        sessionStorage.removeItem('registered');
+    }
 
     loginBtn.addEventListener('click', handleLogin);
     registerBtn.addEventListener('click', handleRegister);

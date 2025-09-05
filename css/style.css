@@ -11,6 +11,7 @@
   --ring: #dd6ff9;
   --gap: .5rem;
   --header-h: 56px;
+  --header-offset: 2rem; /* extra space below header (tweak this) */
 }
 
 /* ==============================
@@ -18,18 +19,22 @@
 ============================== */
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   background: var(--bg) var(--bg-img) center center / cover no-repeat fixed;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: var(--ink);
 }
 
+/* For login/register pages specifically */
+body.login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 main {
-  padding-top: calc(var(--header-h) + 0.5rem);
+  padding-top: calc(var(--header-h, 56px) + var(--header-offset, 0.75rem));
 }
 
 /* ==============================
@@ -106,7 +111,8 @@ main {
   font-family: 'Bangers', cursive, sans-serif;
 }
 
-.btn:hover { background: var(--accent); }
+.btn:hover { background: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.btn:focus-visible { text-decoration: underline; text-underline-offset: 2px; }
 .btn:active { transform: translateY(1px); }
 
 .btn--full { width: 100%; }
@@ -128,6 +134,7 @@ main {
   text-align: center;
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
+  margin-top: 2.25rem;
   letter-spacing: 1px;
   font-family: 'Bangers', cursive, sans-serif;
 
@@ -156,12 +163,18 @@ main {
   position: fixed;
   top: 0; left: 0; right: 0;
   display: flex;
-  gap: var(--gap);
   align-items: center;
   padding: .6rem 1rem;
   background: rgba(0,0,0,.45);
   backdrop-filter: blur(6px);
-  height: var(--header-h);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: var(--gap);
 }
 
 .nav-bar-link {
@@ -213,11 +226,17 @@ main {
 }
 
 .input-group > img.input-icon {
-  width: 56px;
-  height: 46px;
-  flex: 0 0 56px;   
+  width: 66px;
+  height: 56px;
+  flex: 0 0 66px;   
   display: block;  
   max-width: none; 
+}
+
+.login-page #login-container .input-group img[src$="rocket.png"] {
+  width: 48px;
+  height: 32px;
+  flex: 0 0 45px;
 }
 
 .muted { opacity:.8; }
@@ -257,29 +276,50 @@ main {
    View contacts page
 ============================== */
 .container {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
 }
 
+main.container {
+  padding-top: calc(var(--header-h, 56px) + var(--header-offset, 2rem));
+}
+
 #contact-search {
-  width: 100%;
+  width: min(100%, 640px);
   padding: 0.8rem;
   border-radius: 0.8rem;
-  border: 4px solid rgba(173, 87, 199, 0.7) !important; /* debug !important to override other styles */
-  margin: 0.5rem 0 0.5rem;
+  border: 4px solid rgba(173, 87, 199, 0.7) !important;
+  margin: 0.5rem auto 0.5rem;
+  display: block;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--ink);
+  font-size: 1.1rem;
+  box-sizing: border-box;
+}
+
+#contact-search::placeholder {
+  color: #e4d0ea;
+  opacity: 0.8;
 }
 
 .show-all-wrapper {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  justify-content: center;
   margin: 0 0 1rem;
 }
 
 #empty-state {
   margin-top: 1rem;
-  opacity: 0.8;
+  opacity: 0.9;
+  text-align: center;
+  font-size: 1.1rem;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #e4d0ea;
+  letter-spacing: 0.5px;
+  font-weight: 400;
 }
 
 /* ==============================
@@ -320,3 +360,5 @@ main {
   justify-content: flex-end;
   margin-top: 1rem;
 }
+
+

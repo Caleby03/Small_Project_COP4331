@@ -1,8 +1,21 @@
-// pasted this from Khalil's branch on featire/navbar
+// pasted this from Khalil's branch on feature/navbar
 
 document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.getElementById("hamburger");
-    const navBar = document.getElementById("nav-bar");
+
+    // added this section for better formatting of headers
+    const header = document.querySelector('.app-header');
+    const setHeaderVar = () => {
+        if (!header) return;
+        const h = header.getBoundingClientRect().height;
+        document.documentElement.style.setProperty('--header-h', `${h}px`);
+    };
+    setHeaderVar();
+    window.addEventListener('resize', () => requestAnimationFrame(setHeaderVar));
+    if (window.ResizeObserver && header) {
+        const ro = new ResizeObserver(() => setHeaderVar());
+        ro.observe(header);
+    }
+
     const loginlogoutBtn = document.getElementById("login-logout-btn");
     const navBarLinks = document.querySelectorAll('.nav-bar-link');
 
@@ -30,11 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = './login.html';
             }
         });
-    });
-
-    // hamburger toggle
-    hamburger.addEventListener('click', () => {
-        navBar.classList.toggle('show');
     });
 
     // logout function

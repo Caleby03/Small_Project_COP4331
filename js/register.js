@@ -4,8 +4,8 @@ const extension = "php";
 
 document.addEventListener('DOMContentLoaded', () => {
     const createActBtn = document.getElementById("create-account-btn");
-    const firstNameInput = "Caleb"//document.getElementById("first-name") ;
-    const lastNameInput = "Y"//document.getElementById("last-name");
+    const firstNameInput = document.getElementById("firstName");
+    const lastNameInput  = document.getElementById("lastName");
     const emailInput = document.getElementById("email");
     const passwordInput = document.getElementById("password");
     const errorTxt = document.getElementById("error-text");
@@ -21,9 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault(); // stop default form submission
         if(handleError()) return;
 
-        let payload = {firstName: firstNameInput//.value
-        , lastName: lastNameInput//.value
-        ,login: emailInput.value, password: passwordInput.value};
+        let payload = {
+            firstName: firstNameInput.value,
+            lastName: lastNameInput.value,
+            login: emailInput.value,
+            password: passwordInput.value
+        };
         let jsonPayload = JSON.stringify(payload);
 
         let xhr = new XMLHttpRequest();
@@ -42,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         return;
                     }
                     sessionStorage.setItem("registered", "true");
-                    window.location.href = "./register.html";
+                    window.location.href = "./login.html";
                 }
             };
             xhr.send(jsonPayload);
@@ -53,8 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function handleError(){
-        const firstNameVal = firstNameInput //.value.trim();
-        const lastNameVal = lastNameInput //.value.trim();
+        const firstNameVal = firstNameInput.value.trim();
+        const lastNameVal = lastNameInput.value.trim();
         const emailVal = emailInput.value.trim();
         const passVal = passwordInput.value.trim();
 

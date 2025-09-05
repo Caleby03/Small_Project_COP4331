@@ -16,29 +16,49 @@
 
   <!-- header / nav -->
   <header class="app-header">
-    <button id="hamburger"
-            type="button"
-            class="btn btn--contact"
-            aria-label="Toggle navigation"
-            aria-controls="nav-bar"
-            aria-expanded="false">
-      Contact functions
-    </button>
-
-    <nav id="nav-bar" class="nav" aria-label="Primary">
-      <a href="./add-contact.html" class="nav-bar-link">Add a New Contact</a>
-      <a href="./view-contact.html" class="nav-bar-link">View My Contacts</a>
-    </nav>
-
-    <button id="login-logout-btn" class="btn" type="button">Login</button>
+    <div class="header-content">
+      <a href="./add-contact.html" class="btn btn--contact nav-bar-link">Add New Contact</a>
+      <button id="login-logout-btn" class="btn" type="button">Login</button>
+    </div>
   </header>
 
   <main class="container">
-    <h1 class="page-title">Welcome to Contact Manager</h1>
-    <a href="view-contact.html" class="btn">Take ME TO MY CONTACTS!</a>
+    <!-- Search -->
+    <h1 class="page-title">Contact Manager</h1>
+    <input
+      id="contact-search"
+      class="input"
+      type="search"
+      placeholder="Search by name or email"
+    />
+
+    <div class="show-all-wrapper">
+      <button id="show-all-btn" class="btn" type="button">
+        Show all contacts
+      </button>
+    </div>
+
+    <!-- Results -->
+    <section>
+      <div id="results" class="contacts-container" role="list"></div>
+      <p id="empty-state" class="muted">Nothing to display yet...</p>
+    </section>
   </main>
+
+  <!-- Delete confirm popup -->
+  <div id="confirm-modal" class="modal" role="dialog" hidden>
+    <div class="modal-content">
+      <h3 id="confirm-title" class="modal-title">ARE YOU SURE?</h3>
+      <p id="confirm-text">You are about to DELETE this contact. This action CANNOT be undone!</p>
+      <div class="modal-actions">
+        <button id="confirm-cancel" class="btn" type="button">Cancel</button>
+        <button id="confirm-delete" class="btn btn--danger" type="button">Delete</button>
+      </div>
+    </div>
+  </div>
 
 
   <script src="./js/app.js"></script>
+  <script src="./js/view-contact.js" defer></script>
 </body>
 </html>
