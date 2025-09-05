@@ -4,7 +4,9 @@
   const firstEl = document.getElementById("firstName");
   const lastEl  = document.getElementById("lastName");
   const phoneEl = document.getElementById("phoneNumber");
+  const emailEl = document.getElementById("emailAddress");
   const errorEl = document.getElementById("error-text");
+  const successEl = document.getElementById("success-text");
   const submitBtn = document.getElementById("add-contact-btn");
 
   if (!form || !firstEl || !lastEl || !phoneEl) return;
@@ -34,6 +36,9 @@
     errorEl.textContent = msg || "";
     if (msg) errorEl.focus?.();
   }
+  function showSuccess(msg){
+    successEl.textContent = msg || "";
+  }
 
   //  live formatting (automatically adds "-" between groups of 3 digits)
   phoneEl.addEventListener("input", () => {
@@ -49,12 +54,13 @@
     e.preventDefault();
     showError("");
 
-    let firstName = normalize(firstEl.value);
-    let lastName  = normalize(lastEl.value);
-    let phone     = formatPhone(phoneEl.value);
+  let firstName = normalize(firstEl.value);
+  let lastName  = normalize(lastEl.value);
+  let phone     = formatPhone(phoneEl.value);
+  let email     = normalize(emailEl?.value);
 
     // form validation
-    if (!firstName || !lastName || !phone) {
+  if (!firstName || !lastName || !phone) {
       showError("Please fill out all fields.");
       return;
     }
@@ -68,7 +74,7 @@
     firstName = titleCase(firstName);
     lastName  = titleCase(lastName);
 
-    const contacts = loadContacts();
+  const contacts = loadContacts();
 
     //  duplicate detection 
     const exists = contacts.some(c =>
@@ -86,6 +92,7 @@
       id: crypto?.randomUUID ? crypto.randomUUID() : String(Date.now()),
       firstName,
       lastName,
+      email,
       phone,
       createdAt: new Date().toISOString()
     };
@@ -96,9 +103,10 @@
       contacts.push(newContact);
       saveContacts(contacts);
       form.reset();
-
-      // return to home page
-      window.location.href = "index.html";
+      showSuccess("Added to contacts!");
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 800);
     } catch (err) {
       console.error(err);
       showError("Something went wrong saving the contact. Please try again.");

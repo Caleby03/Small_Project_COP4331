@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
 </head>
-<body>
+<body class="add-contact-page">
   <!-- header / nav -->
   <header class="app-header">
     <div class="header-content">
@@ -53,6 +53,20 @@
         </div>
       </div>
 
+      <!-- Email Address (optional) -->
+      <div class="email-container">
+        <label for="emailAddress">Email (optional)</label>
+        <div class="input-group">
+          <img class="input-icon" src="./images/loginEmail.png" alt="">
+          <input
+            type="email"
+            id="emailAddress"
+            name="emailAddress"
+            placeholder="Enter contact's email"
+          />
+        </div>
+      </div>
+
       <!-- Phone Number -->
       <div class="phoneNumber-container">
         <label for="phoneNumber">Phone Number</label>
@@ -74,6 +88,8 @@
 
       <!-- error message slot for add-contact.js -->
       <p id="error-text" class="error-text" role="alert"></p>
+  <!-- success message slot for add-contact.js -->
+  <p id="success-text" class="success-text" role="status" aria-live="polite"></p>
 
       <!-- actions -->
       <div class="submit-login-container">
