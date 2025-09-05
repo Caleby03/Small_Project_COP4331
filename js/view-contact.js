@@ -61,7 +61,7 @@ function contactCard(contact) {
 
   const emailP = document.createElement("p");
   emailP.className = "contact-email";
-  emailP.textContent = contact.email || "—";
+  emailP.textContent = contact.email?.trim() || "—";
 
   const phoneP = document.createElement("p");
   phoneP.className = "contact-phone";
@@ -107,7 +107,8 @@ function matchesPrefix(q, c) {
   const needle = q.trim().toLowerCase();
   const first = (c.firstName || "").toLowerCase();
   const last  = (c.lastName || "").toLowerCase();
-  return first.startsWith(needle) || last.startsWith(needle);
+  const email = (c.email || "").toLowerCase();
+  return first.startsWith(needle) || last.startsWith(needle) || email.startsWith(needle);
 }
 
 function currentResults(query) {

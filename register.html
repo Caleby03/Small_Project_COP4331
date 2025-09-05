@@ -11,11 +11,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
 </head>
-<body>
+<body class="login-page">
   <div id="login-container">
     <h1 class="page-title">Account Creation</h1>
 
-    <form id="registerForm">
+<!-- First Name -->
+      <div class="first-name-container">
+        <label for="firstName">First Name</label>
+        <div class="input-group">
+          <img src="./images/rocket.png" alt="User icon">
+          <input type="text" id="firstName" name="firstName" placeholder="Type your first name" required>
+        </div>
+      </div>
+
+      <!-- Last Name -->
+      <div class="last-name-container">
+        <label for="lastName">Last Name</label>
+        <div class="input-group">
+          <img src="./images/rocket.png" alt="User icon">
+          <input type="text" id="lastName" name="lastName" placeholder="Type your last name" required>
+        </div>
+      </div>
+
+      <!-- Email -->
       <div class="email-container">
         <label for="email">Email</label>
         <div class="input-group">
@@ -24,12 +42,13 @@
         </div>
       </div>
 
+      <!-- Password -->
       <div class="password-container">
         <label for="password">Password</label>
-          <div class="input-group">
-            <img src="./images/passwordLock.png" alt="Password lock icon">
-            <input type="password" id="password" name="password" placeholder="Type your password" required>
-          </div>
+        <div class="input-group">
+          <img src="./images/passwordLock.png" alt="Password lock icon">
+          <input type="password" id="password" name="password" placeholder="Type your password" required>
+        </div>
       </div>
 
       <!-- error message slot for register.js -->
