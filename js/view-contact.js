@@ -8,7 +8,7 @@ AI USAGE DISCLOSURE:
 
 const urlbase = "http://cop4331smallprojectteam28.xyz/LAMPAPI";
 const extension = "php";
-console.log("Checking...");
+console.log("Checking 5...");
 
 function getContacts() {
   const raw = localStorage.getItem("contacts");
