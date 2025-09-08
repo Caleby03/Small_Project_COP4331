@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // logout function
     function handleLogout(){
+        sessionStorage.removeItem("userId"); // clear userId to fully logout :D
         sessionStorage.removeItem("loggedIn");
         window.location.href = "./login.html";
     }
