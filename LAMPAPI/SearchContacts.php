@@ -39,4 +39,10 @@
 		echo $obj;
 	}
 
+    function returnWithError($err)
+    {
+        $retValue = '{"results":[],"error":"' . $err . '"}';
+        sendResultInfoAsJson($retValue);
+    }
+
 ?>
