@@ -41,7 +41,7 @@ function getContactsFromDB() {
             console.log("From database:", response.results);
 
             saveContacts(response.results);
-            render(response.results);
+            updateView();
 
           }
         } catch (err) {
