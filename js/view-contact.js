@@ -229,6 +229,7 @@ function confirmDeletion() {
   // Initial: empty list, prompt user to type or use Show All
   render([]);
 
+
   searchEl.addEventListener("input", onSearchInput);
   showAllBtn.addEventListener("click", () => {
     showAllMode = !showAllMode;
