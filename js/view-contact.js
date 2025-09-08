@@ -11,16 +11,16 @@ const extension = "php";
 console.log("Checking 6...");
 
 function getContacts() {
-  getContactsFromDBTest();
   const raw = localStorage.getItem("contacts");
   const parsed = raw ? JSON.parse(raw) : [];
   return parsed;
 }
 
-function getContactsFromDBTest() {
+function getContactsFromDB() {
   const userId = sessionStorage.getItem("userId");
   if (!userId) {
     console.error("Not signed in.");
+    render([]);
     return;
   }
 
@@ -41,13 +41,16 @@ function getContactsFromDBTest() {
             console.log("From database:", response.results);
 
             saveContacts(response.results);
+            updateView();
 
           }
         } catch (err) {
           console.error("Invalid JSON:", err);
+          render([]);
         }
       } else {
         console.error("XHR failed with status:", xhr.status);
+        render([]);
       }
     }
   };
@@ -230,7 +233,7 @@ function confirmDeletion() {
     showAllMode = !showAllMode;
     showAllBtn.textContent = showAllMode ? "Hide all contacts" : "Show all contacts";
     showAllBtn.setAttribute("aria-pressed", String(showAllMode));
-    updateView();
+    getContactsFromDB();
   });
 
   confirmCancel.addEventListener("click", closeConfirm);
