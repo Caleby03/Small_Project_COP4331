@@ -1,15 +1,52 @@
 /*
-AI USAGE DISCLOSURE: 
+AI USAGE DISCLOSURE:
  I, (Collin Van Meter) used ChatGPT 5 to assist with the development of this javascript file.
  Due to the complexities of live search, sorting, and deletion confirmation features,
  I reached out to ChatGPT for help in implementing these features.
  The provided code was tested, verified and understood by me.
 */
 
+const urlbase = "http://cop4331smallprojectteam28.xyz/LAMPAPI";
+const extension = "php";
+
 function getContacts() {
   const raw = localStorage.getItem("contacts");
   const parsed = raw ? JSON.parse(raw) : [];
   return parsed;
+}
+
+function getContactsFromDBTest(){
+  const userId = sessionStorage.getItem("userId");
+  if(!userId){
+    console.error("Not signed in.");
+    return;
+  }
+
+  let xhr = new XMLHttpRequest();
+        xhr.open("POST", urlbase + '/SearchContacts.' + extension, true);
+  xhr.setRequestHeader("Content-Type", "application/json; charset=UTF=8");
+
+  xhr.onreadystatechange = function() {
+    if(this.readyState && this.status == 200){
+      try{
+        let response = JSON.parse(xhr.responseText);
+        if(response.error){
+          console.error("database error: ", response.error);
+        }
+        else{
+          console.log("From database:", response.results);
+        }
+      }
+      catch(error){
+        console.error("Invalid json?:", error);
+      }
+    }
+    else{
+      console.error("XHR error: ", this.status);
+    }
+  }
+  let payload = JSON.stringify({userId: userId});
+  xhr.send(payload);
 }
 
 function saveContacts(list) {
@@ -27,7 +64,7 @@ const confirmCancel = document.getElementById("confirm-cancel");
 
 // flags/helpers
 let pendingDeleteId = null;
-let showAllMode = false; 
+let showAllMode = false;
 
 // Make initials for contact's name
 function initialsFor(firstName = "", lastName = "") {
@@ -193,3 +230,6 @@ function confirmDeletion() {
   confirmDelete.addEventListener("click", confirmDeletion);
 
 })();
+
+
+getContactsFromDBTest();
