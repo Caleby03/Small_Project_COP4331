@@ -231,5 +231,5 @@ function confirmDeletion() {
 
 })();
 
-
+console.log("Testing: Checking database rn...");
 getContactsFromDBTest();
