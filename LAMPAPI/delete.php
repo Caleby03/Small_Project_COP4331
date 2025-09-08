@@ -31,7 +31,7 @@
 			$stmt->bind_param("ii",$userId,$contactId);
 			$stmt->execute(); 
 				
-			if(%stmt->affected_rows==1)
+			if($stmt->affected_rows==1)
 			{
 				returnWithError(""); 
 			}
