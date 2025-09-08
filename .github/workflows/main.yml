@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.PEM_KEY }}
           # no longer pulling all files from github, only the ones that serve website
-          source: "index.html,add-contact.html,login.html,register.html,view-contact.html,css/**,js/**,images/**,LAMPAPI/**"
+          source: "index.html,add-contact.html,login.html,register.html,view-contact.html,edit-contact.html,css/**,js/**,images/**,LAMPAPI/**"
           target: /home/bitnami/deploy
           overwrite: true
 
@@ -49,7 +49,7 @@ jobs:
             sudo find "$DOCROOT" -type d -exec chmod 755 {} \;
             sudo find "$DOCROOT" -type f -exec chmod 644 {} \;
 
-            # restart apache 
+            # restart apache
             test -f "$DOCROOT/index.html" || { echo "index.html missing"; exit 1; }
             sudo /opt/bitnami/ctlscript.sh restart apache
             echo "Deployment finished!"
