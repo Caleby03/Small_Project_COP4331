@@ -8,9 +8,10 @@ AI USAGE DISCLOSURE:
 
 const urlbase = "http://cop4331smallprojectteam28.xyz/LAMPAPI";
 const extension = "php";
-console.log("Checking 5...");
+console.log("Checking 6...");
 
 function getContacts() {
+  getContactsFromDBTest();
   const raw = localStorage.getItem("contacts");
   const parsed = raw ? JSON.parse(raw) : [];
   return parsed;
@@ -38,6 +39,9 @@ function getContactsFromDBTest() {
             console.error("Database error:", response.error);
           } else {
             console.log("From database:", response.results);
+
+            saveContacts(response.results);
+
           }
         } catch (err) {
           console.error("Invalid JSON:", err);
@@ -51,11 +55,6 @@ function getContactsFromDBTest() {
   const payload = JSON.stringify({ userId });
   xhr.send(payload);
 }
-
-
-getContactsFromDBTest();
-
-//testing from database ....
 
 
 function saveContacts(list) {
