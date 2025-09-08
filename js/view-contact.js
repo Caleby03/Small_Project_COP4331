@@ -26,25 +26,25 @@ function getContactsFromDBTest(){
         xhr.open("POST", urlbase + '/SearchContacts.' + extension, true);
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF=8");
 
-  xhr.onreadystatechange = function() {
-    if(this.readyState && this.status == 200){
-      try{
+xhr.onreadystatechange = function() {
+  if (this.readyState === 4) { // only act when request is complete
+    if (this.status === 200) {
+      try {
         let response = JSON.parse(xhr.responseText);
-        if(response.error){
-          console.error("database error: ", response.error);
-        }
-        else{
+        if (response.error) {
+          console.error("Database error:", response.error);
+        } else {
           console.log("From database:", response.results);
         }
+      } catch (error) {
+        console.error("Invalid JSON:", error);
       }
-      catch(error){
-        console.error("Invalid json?:", error);
-      }
-    }
-    else{
-      console.error("XHR error: ", this.status);
+    } else {
+      console.error("XHR failed with status:", this.status);
     }
   }
+};
+
   let payload = JSON.stringify({userId: userId});
   xhr.send(payload);
 }
