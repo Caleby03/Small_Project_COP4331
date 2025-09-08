@@ -3,7 +3,7 @@
     $inData = getRequestInfo();
 
 
-    $userId = $inData["userId"];
+    $userId = $inData["ID"];
 
 	$conn = new mysqli("localhost", "UnNamed", "Small", "COP4331", 3306);
 
@@ -11,15 +11,21 @@
         returnWithError($conn->connect_error);
     }
     else{
-        $stmt = $conn->prepare("SELECT ID, FirstName,LastName,Email,Phone, DateRecorded FROM Contacts WHERE
-        UserID=? ORDER BY FirstName, LastName");
+        $stmt = $conn->prepare("SELECT ID, FirstName, LastName, Email, PhoneNumber, DateRecorded FROM Contacts WHERE ID=? ORDER BY FirstName, LastName");
         $stmt->bind_param("i", $userId);
         $stmt->execute();
         $result = $stmt->get_result();
 
         $contacts = array();
         while($row = $result->fetch_assoc()){
-            $contacts[] = $row;
+            $contacts[] = array(
+                "id" => $row['ID'],
+                "firstName" => $row['FirstName'],
+                "lastName" => $row['LastName'],
+                "email" => $row['Email'],
+                "phone" => $row['PhoneNumber'],
+                "dateRecorded" => $row['DateRecorded']
+            );
         }
         $stmt->close();
         $conn->close();
