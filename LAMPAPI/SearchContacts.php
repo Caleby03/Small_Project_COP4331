@@ -13,7 +13,7 @@
     else{
         $stmt = $conn->prepare("SELECT ID, FirstName,LastName,Email,Phone, DateRecorded FROM Contacts WHERE
         UserID=? ORDER BY FirstName, LastName");
-        $stmt->bind_paramm("i", $userId);
+        $stmt->bind_param("i", $userId);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -21,7 +21,7 @@
         while($row = $result->fetch_assoc()){
             $contacts[] = $row;
         }
-        $stmt->clsoe();
+        $stmt->close();
         $conn->close();
 
         sendResultInfoAsJson(json_encode(array("results"=>$contacts,"error"=>"")));
@@ -33,11 +33,10 @@
         return json_decode(file_get_contents('php://input'), true);
     }
 
-    function sendResultInfoAsJson($obj){
-        $retVal = '{"results:[],"error":"'.$err.'"}';
-        sendResultInfoAsJson($retVal);
-    }
-
-
+	function sendResultInfoAsJson( $obj )
+	{
+		header('Content-type: application/json');
+		echo $obj;
+	}
 
 ?>
