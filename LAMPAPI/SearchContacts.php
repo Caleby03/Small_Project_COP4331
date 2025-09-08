@@ -11,7 +11,7 @@
         returnWithError($conn->connect_error);
     }
     else{
-        $stmt = $conn->prepare("SELECT ID, FirstName, LastName, Email, PhoneNumber, DateRecorded FROM Contacts WHERE ID=? ORDER BY FirstName, LastName");
+        $stmt = $conn->prepare("SELECT ID, FirstName, LastName, Email, PhoneNumber, DateRecorded FROM Contacts WHERE UserId=? ORDER BY FirstName, LastName");
         $stmt->bind_param("i", $userId);
         $stmt->execute();
         $result = $stmt->get_result();
