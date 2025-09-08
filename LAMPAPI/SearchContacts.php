@@ -3,7 +3,7 @@
     $inData = getRequestInfo();
 
 
-    $userId = $inData["ID"];
+    $userId = $inData["userId"];
 
 	$conn = new mysqli("localhost", "UnNamed", "Small", "COP4331", 3306);
 
