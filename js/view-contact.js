@@ -8,7 +8,6 @@ AI USAGE DISCLOSURE:
 
 const urlbase = "http://cop4331smallprojectteam28.xyz/LAMPAPI";
 const extension = "php";
-console.log("Checking 6...");
 
 function getContacts() {
   const raw = localStorage.getItem("contacts");
@@ -16,7 +15,7 @@ function getContacts() {
   return parsed;
 }
 
-async function getContactsFromDB() {
+function getContactsFromDB() {
   const userId = sessionStorage.getItem("userId");
   if (!userId) {
     console.error("Not signed in.");
@@ -24,7 +23,6 @@ async function getContactsFromDB() {
     return;
   }
 
-  console.log("Testing: Checking database rn...");
 
   const xhr = new XMLHttpRequest();
   xhr.open("POST", urlbase + '/SearchContacts.' + extension, true);
@@ -38,11 +36,8 @@ async function getContactsFromDB() {
           if (response.error) {
             console.error("Database error:", response.error);
           } else {
-            console.log("From database:", response.results);
-
             saveContacts(response.results);
             updateView();
-
           }
         } catch (err) {
           console.error("Invalid JSON:", err);
