@@ -16,7 +16,7 @@ function getContacts() {
   return parsed;
 }
 
-function getContactsFromDB() {
+async function getContactsFromDB() {
   const userId = sessionStorage.getItem("userId");
   if (!userId) {
     console.error("Not signed in.");
@@ -225,6 +225,7 @@ function confirmDeletion() {
 }
 
 (() => {
+  getContactsFromDB();
   // Initial: empty list, prompt user to type or use Show All
   render([]);
 
