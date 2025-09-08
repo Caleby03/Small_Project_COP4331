@@ -8,6 +8,7 @@ AI USAGE DISCLOSURE:
 
 const urlbase = "http://cop4331smallprojectteam28.xyz/LAMPAPI";
 const extension = "php";
+console.log("Checking...");
 
 function getContacts() {
   const raw = localStorage.getItem("contacts");
@@ -15,39 +16,47 @@ function getContacts() {
   return parsed;
 }
 
-function getContactsFromDBTest(){
+function getContactsFromDBTest() {
   const userId = sessionStorage.getItem("userId");
-  if(!userId){
+  if (!userId) {
     console.error("Not signed in.");
     return;
   }
 
-  let xhr = new XMLHttpRequest();
-        xhr.open("POST", urlbase + '/SearchContacts.' + extension, true);
-  xhr.setRequestHeader("Content-Type", "application/json; charset=UTF=8");
+  console.log("Testing: Checking database rn...");
 
-xhr.onreadystatechange = function() {
-  if (this.readyState === 4) { // only act when request is complete
-    if (this.status === 200) {
-      try {
-        let response = JSON.parse(xhr.responseText);
-        if (response.error) {
-          console.error("Database error:", response.error);
-        } else {
-          console.log("From database:", response.results);
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", urlbase + '/SearchContacts.' + extension, true);
+  xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        try {
+          const response = JSON.parse(xhr.responseText);
+          if (response.error) {
+            console.error("Database error:", response.error);
+          } else {
+            console.log("From database:", response.results);
+          }
+        } catch (err) {
+          console.error("Invalid JSON:", err);
         }
-      } catch (error) {
-        console.error("Invalid JSON:", error);
+      } else {
+        console.error("XHR failed with status:", xhr.status);
       }
-    } else {
-      console.error("XHR failed with status:", this.status);
     }
-  }
-};
+  };
 
-  let payload = JSON.stringify({userId: userId});
+  const payload = JSON.stringify({ userId });
   xhr.send(payload);
 }
+
+
+getContactsFromDBTest();
+
+//testing from database ....
+
 
 function saveContacts(list) {
   localStorage.setItem("contacts", JSON.stringify(list));
@@ -213,7 +222,6 @@ function confirmDeletion() {
   updateView();
 }
 
-
 (() => {
   // Initial: empty list, prompt user to type or use Show All
   render([]);
@@ -230,6 +238,3 @@ function confirmDeletion() {
   confirmDelete.addEventListener("click", confirmDeletion);
 
 })();
-
-console.log("Testing: Checking database rn...");
-getContactsFromDBTest();
