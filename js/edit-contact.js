@@ -6,6 +6,9 @@ const lastNameInput = document.getElementById("lastName");
 const emailInput = document.getElementById("email");
 const phoneInput = document.getElementById("phone");
 
+
+const submitBtn = document.getElementById("submitBtn");
+
 const contactId = new URLSearchParams(window.location.search).get("id");
 
 
@@ -48,13 +51,23 @@ function loadContact(id){
 loadContact(contactId);
 
 
-function editContact(contactId, data){
+function editContact(){
+
 
     const userId = sessionStorage.getItem("userId");
-    if(!userId){
+    if (!userId) {
         console.error("Not signed in");
         return;
     }
+
+    const payload = {
+        userId: Number(userId),
+        contactId: Number(contactId),
+        firstName: firstNameInput.value.trim(),
+        lastName: lastNameInput.value.trim(),
+        email: emailInput.value.trim(),
+        phone: phoneInput.value.trim()
+    };
 
     const xhr = new XMLHttpRequest();
     xhr.open("POST", urlbase + '/update.' + extension, true);
@@ -62,7 +75,7 @@ function editContact(contactId, data){
 
     xhr.onreadystatechange = function () {
         if(xhr.readyState === 4){
-            if(xhr.status = 200){
+            if(xhr.status === 200){
                 try{
                     const response = JSON.parse(xhr.responseText);
                     if(response.error){
@@ -70,14 +83,27 @@ function editContact(contactId, data){
                     }
                     else{
                         console.log("Updated contact");
+                        window.location.href = './index.html';
                     }
                 }
                 catch(error){
                     console.error("error:", error);
                 }
             }
+            else{
+                console.error("Failed status", xhr.status);
+            }
         }
     }
-    const payload = JSON.stringify({search: "", userId: Number(userId)});
-
+    xhr.send(JSON.stringify(payload));
 }
+
+
+function saveChanges(){
+    editContact();
+}
+
+submitBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    saveChanges();
+});
