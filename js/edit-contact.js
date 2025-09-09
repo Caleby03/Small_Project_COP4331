@@ -23,7 +23,7 @@ function loadContact(id){
             }
         }
     }
-    const payload = JSON.stringify({search: "", userId: Number(userId)});
+    const payload = JSON.stringify({search: "", userId: Number(sessionStorage.getItem("userId"))});
     xhr.send(payload);
 }
 
