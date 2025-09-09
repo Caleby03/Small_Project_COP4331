@@ -15,6 +15,47 @@ function getContacts() {
   return parsed;
 }
 
+function deleteContactsFromDB(pendingId){
+  const userId = sessionStorage.getItem("userId");
+  if (!userId) {
+    console.error("Not signed in.");
+    return closeConfirm();
+  }
+
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", urlbase + '/delete.' + extension, true);
+  xhr.setRequestHeader("Content-Type", 'application/json; charset=UTF-8');
+
+  xhr.onreadystatechange = function () {
+    if(xhr.readyState === 4){
+      if(xhr.status === 200){
+        try{
+          const response = JSON.parse(xhr.responseText);
+          if(response.error){
+            console.log("DB error:", response.error);
+          }
+          else{
+            const list = getContacts().filter(c => c.id !== pendingDeleteId);
+            saveContacts(list);
+            updateView();
+            console.log("Success in connecting");
+          }
+        }
+        catch(error){
+          console.error("Invalid JSON:", error);
+        }
+      }
+      else{
+      console.error("XHR failed with status:", xhr.status);
+      }
+    }
+    closeConfirm();
+  }
+
+  const payload = JSON.stringify({userId: Number(userId), contactId: Number(pendingId)});
+  xhr.send(payload);
+}
+
 function getContactsFromDB() {
   const userId = sessionStorage.getItem("userId");
   if (!userId) {
@@ -43,7 +84,8 @@ function getContactsFromDB() {
           console.error("Invalid JSON:", err);
           render([]);
         }
-      } else {
+      }
+      else {
         console.error("XHR failed with status:", xhr.status);
         render([]);
       }
@@ -213,10 +255,7 @@ function closeConfirm() {
 
 function confirmDeletion() {
   if (!pendingDeleteId) return closeConfirm();
-  const list = getContacts().filter(c => c.id !== pendingDeleteId);
-  saveContacts(list);
-  closeConfirm();
-  updateView();
+  deleteContactsFromDB(pendingDeleteId);
 }
 
 (() => {
