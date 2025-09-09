@@ -13,6 +13,21 @@ const cancelBtn = document.getElementById("cancel-btn");
 const contactId = new URLSearchParams(window.location.search).get("id");
 
 
+function formatPhone(raw) {
+    const d = digits(raw).slice(0, 10);
+    if (d.length <= 3) return d;
+    if (d.length <= 6) return `${d.slice(0, 3)}-${d.slice(3)}`;
+    return `${d.slice(0, 3)}-${d.slice(3, 6)}-${d.slice(6)}`;
+}
+
+phoneInput.addEventListener('input', () => {
+    const before = phoneInput.value;
+    phoneInput.value = formatPhone(before);
+    if (document.activeElement === phoneInput) {
+      phoneInput.setSelectionRange(phoneInput.value.length, phoneInput.value.length);
+    }
+})
+
 function loadContact(id){
     const xhr = new XMLHttpRequest();
     xhr.open("POST", urlbase + '/SearchContacts.' + extension, true);
