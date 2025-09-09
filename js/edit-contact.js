@@ -8,7 +8,7 @@ const phoneInput = document.getElementById("phone");
 
 
 const submitBtn = document.getElementById("submitBtn");
-const cancelBtn = document.getElementById("cancelBtn");
+const cancelBtn = document.getElementById("cancel-btn");
 
 const contactId = new URLSearchParams(window.location.search).get("id");
 
