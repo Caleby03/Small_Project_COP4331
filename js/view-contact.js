@@ -255,6 +255,7 @@ function closeConfirm() {
 
 function confirmDeletion() {
   if (!pendingDeleteId) return closeConfirm();
+  console.log("Running delete check...");
   deleteContactsFromDB(pendingDeleteId);
 }
 
