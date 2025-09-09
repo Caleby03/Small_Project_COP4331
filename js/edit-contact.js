@@ -12,6 +12,7 @@ const cancelBtn = document.getElementById("cancel-btn");
 
 const contactId = new URLSearchParams(window.location.search).get("id");
 
+const digits = s => (s || "").replace(/\D/g, "");
 
 function formatPhone(raw) {
     const d = digits(raw).slice(0, 10);
@@ -26,7 +27,7 @@ phoneInput.addEventListener('input', () => {
     if (document.activeElement === phoneInput) {
       phoneInput.setSelectionRange(phoneInput.value.length, phoneInput.value.length);
     }
-})
+});
 
 function loadContact(id){
     const xhr = new XMLHttpRequest();
