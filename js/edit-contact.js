@@ -21,6 +21,10 @@ function formatPhone(raw) {
     return `${d.slice(0, 3)}-${d.slice(3, 6)}-${d.slice(6)}`;
 }
 
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 function loadContact(id){
     const xhr = new XMLHttpRequest();
     xhr.open("POST", urlbase + '/SearchContacts.' + extension, true);
@@ -69,12 +73,20 @@ function editContact(){
         return;
     }
 
+    // Email format validation
+    const email = emailInput.value.trim();
+    if (!isValidEmail(email)) {
+        alert("Please enter a valid email address.");
+        emailInput.focus();
+        return;
+    }
+
     const payload = {
         userId: Number(userId),
         contactId: Number(contactId),
         firstName: firstNameInput.value.trim(),
         lastName: lastNameInput.value.trim(),
-        email: emailInput.value.trim(),
+        email: email,
         phone: phoneInput.value.trim()
     };
 

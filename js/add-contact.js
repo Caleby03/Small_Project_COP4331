@@ -25,6 +25,9 @@
     if (d.length <= 6) return `${d.slice(0, 3)}-${d.slice(3)}`;
     return `${d.slice(0, 3)}-${d.slice(3, 6)}-${d.slice(6)}`;
   }
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
 
   function loadContacts() {
     try { return JSON.parse(localStorage.getItem("contacts")) || []; }
@@ -67,10 +70,15 @@
       showError("Please fill out all fields.");
       return;
     }
-    if (digits(phone).length !== 10) {
+  if (digits(phone).length !== 10) {
       showError("Please enter a valid 10‑digit phone number.");
       phoneEl.focus();
       return;
+    }
+  if (!isValidEmail(email)) {
+    showError("Please enter a valid email address.");
+    emailEl.focus();
+    return;
     }
 
     // normalize capitalization of names
