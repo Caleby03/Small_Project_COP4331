@@ -11,7 +11,7 @@
   --ring: #dd6ff9;
   --gap: .5rem;
   --header-h: 56px;
-  --header-offset: 2rem; 
+  --header-offset: 2rem;
 }
 
 /* ==============================
@@ -93,7 +93,7 @@ main {
   color: var(--ink);
   font-size: 1rem;
   outline: none;
-  font-family: inherit; 
+  font-family: inherit;
 }
 
 .input-group input::placeholder {
@@ -109,11 +109,11 @@ main {
   box-sizing: border-box;
   text-align: center;
   text-decoration: none;
-  padding: 0.5rem 1rem;        
+  padding: 0.5rem 1rem;
   margin-top: 0.6rem;
   background: var(--accent-2);
   border: none;
-  border-radius: 0.6rem;       
+  border-radius: 0.6rem;
   font-size: 1.1rem;
   letter-spacing: 1px;
   color: var(--ink);
@@ -129,13 +129,13 @@ main {
 .btn--full { width: 100%; }
 
 .app-header .btn {
-  margin-top: 0;  
+  margin-top: 0;
 }
 
 .btn--contact {
-  margin-top: 0;                
-  border-radius: 0.6rem;       
-  
+  margin-top: 0;
+  border-radius: 0.6rem;
+
 }
 
 /* ==============================
@@ -170,13 +170,13 @@ main {
 .success-text {
   min-height: 1.2rem;
   margin: 0.25rem 0 0.5rem;
-  color: #8ef7a5; 
+  color: #8ef7a5;
   letter-spacing: 0.5px;
   font-size: 0.95rem;
 }
 
 /* ==============================
-   HEADER & NAV 
+   HEADER & NAV
 ============================== */
 .app-header {
   position: fixed;
@@ -247,9 +247,9 @@ main {
 .input-group > img.input-icon {
   width: 66px;
   height: 56px;
-  flex: 0 0 66px;   
-  display: block;  
-  max-width: none; 
+  flex: 0 0 66px;
+  display: block;
+  max-width: none;
 }
 
 .login-page #login-container .input-group img[src$="rocket.png"] {
@@ -381,7 +381,7 @@ main.container {
 }
 
 /* ==============================
-   Add Contact page 
+   Add Contact page
 ============================== */
 body.add-contact-page #login-container {
   width: 300px;
@@ -413,3 +413,15 @@ body.add-contact-page small.help-text {
 }
 
 
+/* ==============================
+   Edit Contact page
+============================== */
+
+#editForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  /*temporary*/
+}

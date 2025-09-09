@@ -4,6 +4,8 @@ const extension = "php";
 const firstNameInput = document.getElementById("firstName");
 const lastNameInput = document.getElementById("lastName");
 
+const contactId = new URLSearchParams(window.location.search).get("id");
+
 
 function loadContact(id){
     const xhr = new XMLHttpRequest();
@@ -22,7 +24,11 @@ function loadContact(id){
         }
     }
     const payload = JSON.stringify({search: "", userId: Number(userId)});
+    xhr.send(payload);
 }
+
+loadContact(contactId);
+
 
 function editContact(contactId, data){
 
