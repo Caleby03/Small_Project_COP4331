@@ -7,29 +7,78 @@
 </head>
 <body>
   <h2>Edit Contact</h2>
+    <div class="editContact-container">
+          <form id="editForm">
+    <div class="firstName-container">
+        <label for="firstName">First Name</label>
+        <div class="input-group">
+          <img class="input-icon input-icon--rocket" src="./images/rocket.png" alt="">
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            placeholder="Enter contact's first name"
+            required
+          />
+        </div>
+      </div>
 
-  <form id="editForm">
-    <label>
-      First Name:
-      <input type="text" id="firstName" required>
-    </label>
-    <label>
-      Last Name:
-      <input type="text" id="lastName" required>
-    </label>
+      <!-- Last Name -->
+      <div class="lastName-container">
+        <label for="lastName">Last Name</label>
+        <div class="input-group">
+          <img class="input-icon" src="./images/rocket.png" alt="">
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            placeholder="Enter contact's last name"
+            required
+          />
+        </div>
+      </div>
 
-    <label>
-      Email:
-      <input type="email" id="email">
-    </label>
+      <!-- Email Address (optional) -->
+      <div class="email-container">
+        <label for="emailAddress">Email (optional)</label>
+        <div class="input-group">
+          <img class="input-icon" src="./images/loginEmail.png" alt="">
+          <input
+            type="email"
+            id="email"
+            name="emailAddress"
+            placeholder="Enter contact's email"
+          />
+        </div>
+      </div>
 
-    <label>
-      Phone:
-      <input type="tel" id="phone">
-    </label>
-    <button type="submit" id="submitBtn">Save Changes</button>
-    <button type="button" id="cancelBtn">Cancel</button>
+      <!-- Phone Number -->
+      <div class="phoneNumber-container">
+        <label for="phoneNumber">Phone Number</label>
+        <div class="input-group">
+          <img class="input-icon" src="./images/rocket.png" alt="">
+          <input
+            type="tel"
+            id="phoneNumber"
+            name="phoneNumber"
+            placeholder="Enter contact's phone #"
+            inputmode="tel"
+            pattern="^\d{3}-\d{3}-\d{4}$"
+            maxlength="12"
+            required
+          />
+        </div>
+        <small class="help-text">Format: 123-456-7890</small>
+    </div>
+
+    <div class="submit-edit-container">
+        <button id="add-contact-btn" type="submit" class="btn btn--full">Save Changes</button>
+      </div>
+    <div class="cancel-edit-container">
+        <a id="cancel-btn" href="index.html" class="btn btn--full">Cancel</a>
+      </div>
   </form>
+    </div>
 
   <script src="./js/edit-contact.js"></script>
 </body>
