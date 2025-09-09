@@ -8,6 +8,7 @@ const phoneInput = document.getElementById("phone");
 
 
 const submitBtn = document.getElementById("submitBtn");
+const cancelBtn = document.getElementById("cancelBtn");
 
 const contactId = new URLSearchParams(window.location.search).get("id");
 
@@ -102,6 +103,12 @@ function editContact(){
 function saveChanges(){
     editContact();
 }
+
+function cancelChanges(){
+    window.location.href = './index.html';
+}
+
+cancelBtn.addEventListener('click', cancelChanges);
 
 submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
