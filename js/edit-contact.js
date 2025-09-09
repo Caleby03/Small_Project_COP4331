@@ -21,14 +21,6 @@ function formatPhone(raw) {
     return `${d.slice(0, 3)}-${d.slice(3, 6)}-${d.slice(6)}`;
 }
 
-phoneInput.addEventListener('input', () => {
-    const before = phoneInput.value;
-    phoneInput.value = formatPhone(before);
-    if (document.activeElement === phoneInput) {
-      phoneInput.setSelectionRange(phoneInput.value.length, phoneInput.value.length);
-    }
-});
-
 function loadContact(id){
     const xhr = new XMLHttpRequest();
     xhr.open("POST", urlbase + '/SearchContacts.' + extension, true);
@@ -129,4 +121,15 @@ cancelBtn.addEventListener('click', cancelChanges);
 submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
     saveChanges();
+});
+
+
+phoneInput.value = formatPhone(contact.phone);
+
+phoneInput.addEventListener('input', () => {
+    const before = phoneInput.value;
+    phoneInput.value = formatPhone(before);
+    if (document.activeElement === phoneInput) {
+      phoneInput.setSelectionRange(phoneInput.value.length, phoneInput.value.length);
+    }
 });
