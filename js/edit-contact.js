@@ -44,7 +44,7 @@ function loadContact(id){
                 firstNameInput.value = contact.firstName;
                 lastNameInput.value = contact.lastName;
                 emailInput.value = contact.email;
-                phoneInput.value = contact.phone;
+                phoneInput.value = formatPhone(contact.phone);
 
 
             }
@@ -123,8 +123,6 @@ submitBtn.addEventListener('click', (e) => {
     saveChanges();
 });
 
-
-phoneInput.value = formatPhone(contact.phone);
 
 phoneInput.addEventListener('input', () => {
     const before = phoneInput.value;
