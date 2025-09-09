@@ -35,10 +35,11 @@ function deleteContactsFromDB(pendingId){
             console.log("DB error:", response.error);
           }
           else{
+              console.log("Delete successful");
+
               const list = getContacts().filter(c => c.id !== pendingDeleteId);
               saveContacts(list);
               updateView();
-            console.log("Delete successful");
           }
         }
         catch(error){
