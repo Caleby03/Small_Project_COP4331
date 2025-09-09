@@ -37,7 +37,6 @@ function deleteContactsFromDB(pendingId){
           else{
             const list = getContacts().filter(c => c.id !== pendingDeleteId);
             saveContacts(list);
-            updateView();
             console.log("Success in connecting");
           }
         }
@@ -255,8 +254,9 @@ function closeConfirm() {
 
 function confirmDeletion() {
   if (!pendingDeleteId) return closeConfirm();
-  console.log("Running delete check...");
+  console.log("Running delete check 2...");
   deleteContactsFromDB(pendingDeleteId);
+  updateView();
 }
 
 (() => {
