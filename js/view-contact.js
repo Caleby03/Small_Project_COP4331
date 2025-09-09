@@ -9,6 +9,26 @@ AI USAGE DISCLOSURE:
 const urlbase = "http://cop4331smallprojectteam28.xyz/LAMPAPI";
 const extension = "php";
 
+const homeText = document.querySelector(".muted");
+
+const contactLength = getContacts().length;
+
+function updateHomeMessage(){
+  const userId = sessionStorage.getItem("userId");
+  if(!userId){
+    homeText.innerHTML = "Login to view contacts";
+  }
+
+  if(contactLength > 0){
+    homeText.innerHTML = "";
+  }
+  else{
+    homeText.innerHTML = "Go get some friends";
+  }
+}
+
+updateHomeMessage();
+
 function getContacts() {
   const raw = localStorage.getItem("contacts");
   const parsed = raw ? JSON.parse(raw) : [];
@@ -252,7 +272,6 @@ function closeConfirm() {
 
 function confirmDeletion() {
   if (!pendingDeleteId) return closeConfirm();
-  console.log("Running delete check 3...");
   deleteContactsFromDB(pendingDeleteId);
   const list = getContacts().filter(c => c.id !== pendingDeleteId);
   saveContacts(list);
