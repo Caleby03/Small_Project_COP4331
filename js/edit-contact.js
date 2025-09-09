@@ -3,6 +3,8 @@ const extension = "php";
 
 const firstNameInput = document.getElementById("firstName");
 const lastNameInput = document.getElementById("lastName");
+const emailInput = document.getElementById("email");
+const phoneInput = document.getElementById("phone");
 
 const contactId = new URLSearchParams(window.location.search).get("id");
 
@@ -21,7 +23,18 @@ function loadContact(id){
                     return;
                 }
 
-                console.log(response.results);
+                const contact = response.results.find(c => Number(c.id) === Number(id));
+                if(!contact){
+                    console.error("Contact not here?");
+                    return;
+                }
+
+                firstNameInput.value = contact.firstName;
+                lastNameInput.value = contact.lastName;
+                emailInput.value = contact.email;
+                phoneInput.value = contact.phone;
+
+
             }
             catch(error){
                 console.error("error:", error);
