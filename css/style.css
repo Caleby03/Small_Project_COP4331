@@ -12,6 +12,20 @@
   --gap: .5rem;
   --header-h: 56px;
   --header-offset: 2rem;
+  --panel-w: 320px;
+  --field-gap: 1rem;
+  --icon-size: 28px;
+  --icon-size-sm: 22px;
+  /* Icon glow colors */
+  --glow-cyan-main:#6fa2f9; 
+  --glow-cyan-mid:#33ffd2; 
+  --glow-cyan-deep:#1f32bf;
+  --glow-pink-main:#2605a8; 
+  --glow-pink-mid:#d016ff; 
+  --glow-pink-deep:#aa8cb3;
+  --glow-strength-small:2px; 
+  --glow-strength-medium:3px;
+  --glow-strength-large:3px;
 }
 
 /* ==============================
@@ -26,23 +40,17 @@ body {
 }
 
 /* For login/register pages specifically */
-body.login-page {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.auth-layout {
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding: clamp(1.5rem, 4vh, 3rem) 1rem 1.5rem;
+  box-sizing:border-box;
 }
-
-
-body.add-contact-page {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-body.add-contact-page #login-container {
-  margin-top: calc(var(--header-h, 56px) + 1.5rem);
-}
+.with-header { align-items:flex-start; padding-top:calc(var(--header-h) + 2rem); }
+body.add-contact-page #login-container, body.edit-contact-page .editContact-container { margin-top:0; }
+body.edit-contact-page .page-title, body.add-contact-page .page-title { margin-top:0; }
 
 main {
   padding-top: calc(var(--header-h, 56px) + var(--header-offset, 0.75rem));
@@ -51,49 +59,78 @@ main {
 /* ==============================
    LOGIN CONTAINER
 ============================== */
-#login-container {
+#login-container, 
+.form-panel { 
   background: var(--glass);
-  padding: 2rem;
+  padding: 2rem 2rem 1.4rem;
   border-radius: 1rem;
   box-shadow: 0 0 25px rgba(0,0,0,0.6);
-  width: 320px;
+  width: var(--panel-w);
+  box-sizing: border-box;
 }
 
-#login-container label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-  letter-spacing: 1px;
+/* ==============================
+   ICONS
+============================== */
+.input-icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  margin-right: .55rem;
+  flex: 0 0 var(--icon-size);
+  display: inline-block;
+  vertical-align: middle;
+  filter: drop-shadow(0 0 2px var(--accent));
+  transition: filter .2s, transform .2s;
+}
+.input-icon--rocket { filter: drop-shadow(0 0 var(--glow-strength-small) var(--glow-cyan-main)) drop-shadow(0 0 var(--glow-strength-medium) var(--glow-cyan-mid)) drop-shadow(0 0 var(--glow-strength-large) var(--glow-cyan-deep)); }
+/* All other icons share pink glow */
+.input-icon--email,
+.input-icon--phone,
+.input-icon--password { filter: drop-shadow(0 0 var(--glow-strength-small) var(--glow-pink-main)) drop-shadow(0 0 var(--glow-strength-medium) var(--glow-pink-mid)) drop-shadow(0 0 var(--glow-strength-large) var(--glow-pink-deep)); }
+/* subtle width adjust remains for email */
+.input-icon--email { transform: scaleX(1.08); }
+
+/* Static glow */
+.input-icon--sm { width: var(--icon-size-sm); height: var(--icon-size-sm); flex:0 0 var(--icon-size-sm); }
+
+/* FIELD LABELS */
+#login-container label,
+.form-panel label,
+.field-group > label { 
+  display:block;
+  margin-bottom:.45rem;
+  font-size:1.05rem;
+  letter-spacing:.5px;
+  font-weight:500;
 }
 
 /* ==============================
    INPUT GROUPS
 ============================== */
-.input-group {
-  display: flex;
-  align-items: center;
-  background: rgba(89, 54, 94, 0.1);
-  padding: 0.4rem 0.6rem;
-  border-radius: 0.5rem;
-  margin-bottom: 1.2rem;
+/* INPUT GROUP (icon + control) */
+.input-group { 
+  display:flex;
+  align-items:center;
+  background:rgba(89,54,94,.15);
+  padding:.45rem .65rem;
+  border-radius:.55rem;
+  margin:0 0 1rem;
+  border:1px solid rgba(255,255,255,.08);
 }
+.input-group:focus-within { outline:2px solid var(--accent); outline-offset:2px; }
+/* legacy raw img fallback */
+.input-group img:not(.input-icon) { width:var(--icon-size); height:calc(var(--icon-size) - 4px); margin-right:.6rem; }
 
-.input-group img {
-  width: 28px;
-  height: 23px;
-  margin-right: 0.6rem;
-  filter: brightness(0) saturate(100%) invert(18%) sepia(14%)
-          saturate(3551%) hue-rotate(246deg) brightness(93%) contrast(92%);
-}
-
+/* TEXT INPUT */
 .input-group input {
-  flex: 1;
-  border: none;
-  background: transparent;
-  color: var(--ink);
-  font-size: 1rem;
-  outline: none;
-  font-family: inherit;
+  flex:1;
+  border:none;
+  background:transparent;
+  color:var(--ink);
+  font-size:1rem;
+  outline:none;
+  font-family:inherit;
+  letter-spacing:.5px;
 }
 
 .input-group input::placeholder {
@@ -228,36 +265,6 @@ main {
 /* ==============================
    ROCKET ICON
 ============================== */
-
-.input-icon {
-  width: 58px;
-  height: 58px;
-  flex: 0 0 58px;
-}
-
-.input-group {
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-}
-.input-group input {
-  flex: 1 1 auto;
-}
-
-.input-group > img.input-icon {
-  width: 66px;
-  height: 56px;
-  flex: 0 0 66px;
-  display: block;
-  max-width: none;
-}
-
-.login-page #login-container .input-group img[src$="rocket.png"] {
-  width: 48px;
-  height: 32px;
-  flex: 0 0 45px;
-}
-
 .muted { opacity:.8; }
 
 /* ==============================
@@ -419,16 +426,15 @@ body.add-contact-page small.help-text {
 
 /*change as needed*/
 
-.editContact-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+.editContact-container{ display:block; }
+#editForm { background:transparent; padding:0; box-shadow:none; width:auto; }
 
-#editForm{
-  background: var(--glass);
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 25px rgba(0,0,0,0.6);
-  width: 320px;
+.field-group { margin-bottom: var(--field-gap); }
+.field-group.required > label::after { content:" *"; color:#c53; }
+.actions-row { display:flex; flex-direction:column; gap:.6rem; margin-top:.5rem; }
+
+
+@media (max-width:480px){
+  :root { --panel-w: 100%; }
+  #login-container, .form-panel { width:100%; border-radius:.75rem; padding:1.4rem 1.2rem 1.1rem; }
 }

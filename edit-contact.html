@@ -4,82 +4,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edit Contact</title>
   <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
 </head>
-<body>
-  <h1 class="page-title">Edit Contact</h1>
-    <div class="editContact-container">
-          <form id="editForm">
-    <div class="firstName-container">
-        <label for="firstName">First Name</label>
+<body class="edit-contact-page auth-layout with-header">
+  <div class="editContact-container form-panel">
+    <h1 class="page-title">Edit Contact</h1>
+    <form id="editForm" autocomplete="off">
+  <div class="firstName-container field-group required">
+    <label for="firstName">First Name:</label>
         <div class="input-group">
-          <img class="input-icon input-icon--rocket" src="./images/rocket.png" alt="">
+          <img class="input-icon input-icon--rocket" src="./images/rocket.svg" alt="">
           <input
             type="text"
             id="firstName"
             name="firstName"
-            placeholder="Enter contact's first name"
+            placeholder="Contact's first name"
             required
           />
         </div>
       </div>
 
       <!-- Last Name -->
-      <div class="lastName-container">
-        <label for="lastName">Last Name</label>
+      <div class="lastName-container field-group required">
+        <label for="lastName">Last Name:</label>
         <div class="input-group">
-          <img class="input-icon" src="./images/rocket.png" alt="">
+          <img class="input-icon input-icon--rocket" src="./images/rocket.svg" alt="Rocket icon">
           <input
             type="text"
             id="lastName"
             name="lastName"
-            placeholder="Enter contact's last name"
+            placeholder="Contact's last name"
             required
           />
         </div>
       </div>
 
       <!-- Email Address-->
-      <div class="email-container">
-        <label for="emailAddress">Email</label>
+      <div class="email-container field-group required">
+        <label for="emailAddress">Email:</label>
         <div class="input-group">
-          <img class="input-icon" src="./images/loginEmail.png" alt="">
+          <img class="input-icon input-icon--email" src="./images/loginEmail.png" alt="Email icon">
           <input
             type="email"
             id="email"
             name="emailAddress"
-            placeholder="Enter contact's email"
+            placeholder="Contact's email"
             required
           />
         </div>
       </div>
 
       <!-- Phone Number -->
-      <div class="phoneNumber-container">
-        <label for="phoneNumber">Phone Number</label>
+      <div class="phoneNumber-container field-group required">
+        <label for="phoneNumber">Phone Number:</label>
         <div class="input-group">
-          <img class="input-icon" src="./images/rocket.png" alt="">
+          <img class="input-icon input-icon--phone" src="./images/phone.svg" alt="Phone icon">
           <input
             type="tel"
             id="phone"
             name="phoneNumber"
-            placeholder="Enter contact's phone #"
+            placeholder="Contact's phone #"
             inputmode="tel"
             pattern="^\d{3}-\d{3}-\d{4}$"
             maxlength="12"
             required
           />
         </div>
-        <small class="help-text">Format: 123-456-7890</small>
+        <small class="help-text" style="text-decoration: underline;">Note: fields marked with * are required.</small>
     </div>
 
-    <div class="submit-edit-container">
+      <div class="actions-row">
         <button id="submitBtn" type="submit" class="btn btn--full">Save Changes</button>
+        <a id="cancel-btn" href="index.html" class="btn btn--outline">Cancel</a>
       </div>
-    <div class="cancel-edit-container">
-        <a id="cancel-btn" href="index.html" class="btn btn--full">Cancel</a>
-      </div>
-  </form>
-    </div>
+    </form>
+  </div>
 
   <script src="./js/edit-contact.js"></script>
 </body>

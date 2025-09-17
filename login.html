@@ -11,39 +11,38 @@
   <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
 </head>
-<body class="login-page">
-  <div id="login-container">
+<body class="login-page auth-layout">
+  <div id="login-container" class="form-panel">
     <!-- main header -->
     <h1 class="page-title">Welcome to Contact Manager</h1>
 
     
     <form id="loginForm">
-      <div class="email-container">
-        <label for="email">Email</label>
-        <div class="input-group">
-          <img src="./images/loginEmail.png" alt="Email icon">
-          <input type="email" id="email" name="email" placeholder="Type your email" required>
-        </div>
+  <div class="email-container field-group required">
+    <label for="email">Email:</label>
+            <div class="input-group">
+              <img class="input-icon input-icon--email" src="./images/loginEmail.png" alt="Email icon">
+              <input type="email" id="email" name="email" placeholder="Type your email" required>
+            </div>
 
       </div>
-      <div class="password-container">
-        <label for="password">Password</label>
-        <div class="input-group">
-          <img src="./images/passwordLock.png" alt="Password lock icon">
-          <input type="password" id="password" name="password" placeholder="Type your password" required>
-        </div>
+  <div class="password-container field-group required">
+    <label for="password">Password:</label>
+            <div class="input-group">
+              <img class="input-icon input-icon--password" src="./images/passwordLock.png" alt="Password lock icon">
+              <input type="password" id="password" name="password" placeholder="Type your password" required>
+            </div>
       </div>
+    <small class="help-text" style="text-decoration: underline;">Note: fields marked with * are required.</small>
 
 
       <!-- error message slot for login.js -->
       <p id="error-text" class="error-text"></p>
 
       <!-- login/signup buttons-->
-      <div class="submit-login-container">
+      <div class="actions-row">
         <button id="login-btn" type="submit" class="btn btn--full">Login</button>
-      </div>
-      <div class="submit-register-container">
-        <a id="register-btn" href="register.html" class="btn btn--full">Sign Up</a>
+        <a id="register-btn" href="register.html" class="btn btn--outline">Sign Up</a>
       </div>
       
     </form>

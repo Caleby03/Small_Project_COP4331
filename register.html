@@ -11,58 +11,56 @@
   <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
 </head>
-<body class="login-page">
-  <div id="login-container">
+<body class="login-page auth-layout">
+  <div id="login-container" class="form-panel">
     <h1 class="page-title">Account Creation</h1>
-
-<!-- First Name -->
-      <div class="first-name-container">
-        <label for="firstName">First Name</label>
+    <form id="registerForm" autocomplete="off">
+      <!-- First Name -->
+      <div class="firstName-container field-group required">
+        <label for="firstName">First Name:</label>
         <div class="input-group">
-          <img src="./images/rocket.png" alt="User icon">
+          <img class="input-icon input-icon--rocket" src="./images/rocket.svg" alt="Rocket icon">
           <input type="text" id="firstName" name="firstName" placeholder="Type your first name" required>
         </div>
       </div>
 
       <!-- Last Name -->
-      <div class="last-name-container">
-        <label for="lastName">Last Name</label>
+      <div class="lastName-container field-group required">
+        <label for="lastName">Last Name:</label>
         <div class="input-group">
-          <img src="./images/rocket.png" alt="User icon">
+          <img class="input-icon input-icon--rocket" src="./images/rocket.svg" alt="Rocket icon">
           <input type="text" id="lastName" name="lastName" placeholder="Type your last name" required>
         </div>
       </div>
 
       <!-- Email -->
-      <div class="email-container">
-        <label for="email">Email</label>
+      <div class="email-container field-group required">
+        <label for="email">Email:</label>
         <div class="input-group">
-          <img src="./images/loginEmail.png" alt="Email icon">
+          <img class="input-icon input-icon--email" src="./images/loginEmail.png" alt="Email icon">
           <input type="email" id="email" name="email" placeholder="Type your email" required>
         </div>
       </div>
 
       <!-- Password -->
-      <div class="password-container">
-        <label for="password">Password</label>
+      <div class="password-container field-group required">
+        <label for="password">Password:</label>
         <div class="input-group">
-          <img src="./images/passwordLock.png" alt="Password lock icon">
+          <img class="input-icon input-icon--password" src="./images/passwordLock.png" alt="Password lock icon">
           <input type="password" id="password" name="password" placeholder="Type your password" required>
         </div>
       </div>
 
       <!-- error message slot for register.js -->
       <p id="error-text" class="error-text"></p>
+    <small class="help-text" style="text-decoration: underline;">Note: fields marked with * are required.</small>
 
 
       <!-- Create Account / Back to Login buttons-->
-      <div class="submit-register-container">
+      <div class="actions-row">
         <button id="create-account-btn" type="submit" class="btn btn--full">Create Account</button>
+        <a href="login.html" class="btn btn--outline">Back to Login</a>
       </div>
-      <div class="submit-login-container">
-        <a href="login.html" class="btn btn--full">Back to Login</a>
-      </div>
-
     </form>
   </div>
 
