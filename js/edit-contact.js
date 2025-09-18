@@ -90,32 +90,37 @@ function editContact(){
         phone: phoneInput.value.trim()
     };
 
+    // prevent multiple rapid submissions
+    submitBtn.disabled = true;
+
     const xhr = new XMLHttpRequest();
     xhr.open("POST", urlbase + '/update.' + extension, true);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
 
     xhr.onreadystatechange = function () {
-        if(xhr.readyState === 4){
-            if(xhr.status === 200){
-                try{
+        if (xhr.readyState === 4) {
+            let shouldRedirect = true; 
+            if (xhr.status === 200) {
+                try {
                     const response = JSON.parse(xhr.responseText);
-                    if(response.error){
-                        console.error("Error:",response.error);
+                    if (response.error) {
+                        console.error("Update error:", response.error);
+                    } else {
+                        console.log("Contact updated");
                     }
-                    else{
-                        console.log("Updated contact");
-                        window.location.href = './index.html';
-                    }
+                } catch (err) {
+                    console.error("JSON parse error:", err);
                 }
-                catch(error){
-                    console.error("error:", error);
-                }
-            }
-            else{
+            } else {
                 console.error("Failed status", xhr.status);
+                
+                setTimeout(() => { if (shouldRedirect) window.location.href = './index.html'; }, 600);
+                return;
             }
+
+            window.location.href = './index.html';
         }
-    }
+    };
     xhr.send(JSON.stringify(payload));
 }
 

@@ -20,12 +20,12 @@
   --glow-cyan-main:#6fa2f9; 
   --glow-cyan-mid:#33ffd2; 
   --glow-cyan-deep:#1f32bf;
-  --glow-pink-main:#2605a8; 
-  --glow-pink-mid:#d016ff; 
-  --glow-pink-deep:#aa8cb3;
-  --glow-strength-small:2px; 
-  --glow-strength-medium:3px;
-  --glow-strength-large:3px;
+  --glow-pink-main:#51bde1; 
+  --glow-pink-mid:#33ffd2; 
+  --glow-pink-deep:#1f32bf;
+  --glow-strength-small:3px; 
+  --glow-strength-medium:5px;
+  --glow-strength-large:5px;
 }
 
 /* ==============================
@@ -83,12 +83,11 @@ main {
   transition: filter .2s, transform .2s;
 }
 .input-icon--rocket { filter: drop-shadow(0 0 var(--glow-strength-small) var(--glow-cyan-main)) drop-shadow(0 0 var(--glow-strength-medium) var(--glow-cyan-mid)) drop-shadow(0 0 var(--glow-strength-large) var(--glow-cyan-deep)); }
-/* All other icons share pink glow */
 .input-icon--email,
 .input-icon--phone,
 .input-icon--password { filter: drop-shadow(0 0 var(--glow-strength-small) var(--glow-pink-main)) drop-shadow(0 0 var(--glow-strength-medium) var(--glow-pink-mid)) drop-shadow(0 0 var(--glow-strength-large) var(--glow-pink-deep)); }
-/* subtle width adjust remains for email */
-.input-icon--email { transform: scaleX(1.08); }
+.input-icon--phone { transform: scaleX(1); }
+.input-icon--email { transform: scaleX(1.78); }
 
 /* Static glow */
 .input-icon--sm { width: var(--icon-size-sm); height: var(--icon-size-sm); flex:0 0 var(--icon-size-sm); }
