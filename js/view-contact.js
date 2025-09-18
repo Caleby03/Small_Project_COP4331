@@ -179,9 +179,10 @@ function contactCard(contact) {
   editBtn.addEventListener("click", () => handleEdit(contact.id));
 
   const delBtn = document.createElement("button");
-  delBtn.className = "btn btn--danger";
+  delBtn.className = "btn btn--danger icon-btn";
   delBtn.type = "button";
-  delBtn.textContent = "Delete";
+  delBtn.setAttribute("aria-label", "Delete contact");
+  delBtn.innerHTML = '<span class="visually-hidden">Delete</span><img class="icon icon--trash" src="./images/trashcan.svg" alt=""/>';
   delBtn.addEventListener("click", () => openConfirm(contact.id, nameP.textContent));
 
   actions.append(editBtn, delBtn);

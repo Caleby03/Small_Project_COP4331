@@ -293,6 +293,10 @@ main {
   border:none;
 }
 .btn--danger:hover { filter:brightness(1.1); }
+.icon-btn { display:inline-flex; align-items:center; justify-content:center; padding:.55rem .7rem; }
+.icon { width:20px; height:20px; display:inline-block; }
+.icon--trash { filter:drop-shadow(0 0 2px rgba(255,255,255,.6)); }
+.visually-hidden { position:absolute !important; width:1px !important; height:1px !important; padding:0 !important; margin:-1px !important; overflow:hidden !important; clip:rect(0 0 0 0) !important; white-space:nowrap !important; border:0 !important; }
 #show-all-btn:hover,
 #show-all-btn:focus {
   filter: brightness(1.1);
@@ -429,7 +433,9 @@ body.add-contact-page small.help-text {
 #editForm { background:transparent; padding:0; box-shadow:none; width:auto; }
 
 .field-group { margin-bottom: var(--field-gap); }
-.field-group.required > label::after { content:" *"; color:#c53; }
+.field-group.required > label::after { content:" *"; color: var(--required-asterisk, #ff4d4d); }
+/* Red asterisk utility if manually inserting in inline help text */
+.required-asterisk { color: var(--required-asterisk, #ff4d4d); font-weight:600; }
 .actions-row { display:flex; flex-direction:column; gap:.6rem; margin-top:.5rem; }
 
 
