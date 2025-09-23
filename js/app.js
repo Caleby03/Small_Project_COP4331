@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', (e) => {
             if(sessionStorage.getItem("loggedIn") !== "true"){
                 e.preventDefault();
-                window.location.href = './login.html';
+                window.location.href = '/login.html';
             }
         });
     });
