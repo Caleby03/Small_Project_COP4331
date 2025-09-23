@@ -77,6 +77,7 @@ function getContactsFromDB() {
   const userId = sessionStorage.getItem("userId");
   if (!userId) {
     console.error("Not signed in.");
+    window.location.href = "./login.html"; //redirect to login page right away
     render([]);
     return;
   }
