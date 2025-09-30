@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionStorage.removeItem("registered");
     }
 
+
     function handleRegister(e){
         e.preventDefault(); // stop default form submission
         if(handleError()) return;
@@ -32,11 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", urlbase + '/Register.' + extension, true);
         xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-        
-        try{    
-            xhr.onreadystatechange = function() 
+
+        try{
+            xhr.onreadystatechange = function()
             {
-                if(this.readyState == 4 && this.status == 200) 
+                if(this.readyState == 4 && this.status == 200)
                 {
                     let jsonObject = JSON.parse(xhr.responseText);
                     if(jsonObject.error != "")
@@ -44,8 +45,31 @@ document.addEventListener('DOMContentLoaded', () => {
                         errorTxt.innerHTML = "Login Already Exists!";
                         return;
                     }
+                    let loginPayload = {
+                        login: emailInput.value,
+                        password: passwordInput.value
+                    };
+                    let loginJson = JSON.stringify(loginPayload);
+                    let loginXhr = new XMLHttpRequest();
+                    loginXhr.open("POST", urlbase + '/Login.' + extension, true);
+                    loginXhr.setRequestHeader("Content-Type", "application/json");
+
+                    loginXhr.onreadystatechange = function(){
+                        if(this.readyState == 4 && this.status == 200){
+                            let loginRes = JSON.parse(loginXhr.responseText);
+                            if(loginRes.id > 0){
+                                sessionStorage.setItem("userId", loginRes.id);
+                                sessionStorage.setItem("loggedIn", "true");
+                                window.location.href = "./index.html";
+                            }
+                            else{
+                                errorTxt.innerHTML = "Registration succeeded but login failed";
+                            }
+                        }
+                    };
+
+                    loginXhr.send(loginJson);
                     sessionStorage.setItem("registered", "true");
-                    window.location.href = "./login.html";
                 }
             };
             xhr.send(jsonPayload);
